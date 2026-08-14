@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-main: var(--bg-main);
+  --color-bg-sub: var(--bg-sub);
+  --color-bg-dark: var(--bg-dark);
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-accent: var(--accent);
+  --color-accent-sub: var(--accent-sub);
+  --color-text-main: var(--text-main);
+  --color-text-sub: var(--text-sub);
+  --color-text-on-dark: var(--text-on-dark);
+  --color-text-on-dark-sub: var(--text-on-dark-sub);
+  --color-grad-1: var(--grad-1);
+  --color-grad-2: var(--grad-2);
+  --color-grad-3: var(--grad-3);
+  --color-grad-4: var(--grad-4);
+  --color-grad-5: var(--grad-5);
+}
+
+/* Default Theme fallback (prevents black/white unstyled flash) */
+:root, .theme-draft1 {
+  /* Palette 1 (Deep Blues) */
+  --bg-main: #f8fafc;
+  --bg-sub: #ffffff;
+  --bg-dark: #011142;
+  --bg-primary: #011C6B;
+  --bg-secondary: #01258F;
+  --accent: #023BE6;
+  --accent-sub: #0231BD;
+  --text-main: #011142;
+  --text-sub: #334155;
+  --text-on-dark: #ffffff;
+  --text-on-dark-sub: rgba(255, 255, 255, 0.7);
+  --grad-1: #011C6B;
+  --grad-2: #0231BD;
+  --grad-3: #01258F;
+  --grad-4: #023BE6;
+  --grad-5: #011142;
+}
+
+.theme-draft2 {
+  /* Palette 2 (Dark Gray & Teal) */
+  --bg-main: #07080F;
+  --bg-sub: #0F111A;
+  --bg-dark: #05050A;
+  --bg-primary: #1B5574;
+  --bg-secondary: #5B5658;
+  --accent: #1B5574;
+  --accent-sub: #8C8888;
+  --text-main: #F2F0F3;
+  --text-sub: #8C8888;
+  --text-on-dark: #F2F0F3;
+  --text-on-dark-sub: rgba(242, 240, 243, 0.7);
+  --grad-1: #1B5574;
+  --grad-2: #246B8E;
+  --grad-3: #1B5574;
+  --grad-4: #5B5658;
+  --grad-5: #07080F;
+}
+
+.theme-draft3 {
+  /* Palette 3 (Light & Steel Blue) */
+  --bg-main: #FFFFFF;
+  --bg-sub: #F7F9FB;
+  --bg-dark: #2A5078;
+  --bg-primary: #DBE4EB;
+  --bg-secondary: #6587A5;
+  --accent: #2A5078;
+  --accent-sub: #6587A5;
+  --text-main: #1f2937;
+  --text-sub: #4b5563;
+  --text-on-dark: #FFFFFF;
+  --text-on-dark-sub: rgba(255, 255, 255, 0.8);
+  --grad-1: #2A5078;
+  --grad-2: #6587A5;
+  --grad-3: #848996;
+  --grad-4: #DBE4EB;
+  --grad-5: #FFFFFF;
+}
+
+body {
+  @apply bg-bg-main text-text-main antialiased transition-colors duration-500;
+}
