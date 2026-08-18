@@ -1,23 +1,87 @@
-import { useEffect } from 'react';
-import { useThemeStore } from '../store/themeStore';
-import LayoutDraft1 from './LayoutDraft1';
-import LayoutDraft2 from './LayoutDraft2';
-import LayoutDraft3 from './LayoutDraft3';
+import { Outlet, useLocation, Link } from 'react-router-dom';
+import Header from '../components/Header';
+import ConsultationButton from '../components/ConsultationButton';
+import logoUrl from '../assets/logo.png';
 
 export default function MainLayout() {
-  const { activeDraft } = useThemeStore();
+  const location = useLocation();
+  const isHome = location.pathname === '/';
 
-  useEffect(() => {
-    document.body.className = `theme-${activeDraft}`;
-  }, [activeDraft]);
+  return (
+    <div className="flex flex-col min-h-screen font-sans bg-white text-slate-900">
+      <Header />
+      <main className={`flex-1 relative w-full ${isHome ? '' : 'pt-28 pb-24'}`}>
+        <Outlet />
+      </main>
+      
+      {/* Global Footer Area */}
+      <div className="flex flex-col snap-start snap-always min-h-screen justify-center bg-white">
+        {/* Partners Marquee Banner (Global before footer) */}
+        <div className="w-full bg-white overflow-hidden border-b border-slate-100 py-6">
+          <div className="relative flex overflow-hidden w-full group">
+            <div className="flex items-center w-max animate-marquee">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="flex items-center gap-16 md:gap-32 px-8 md:px-16 shrink-0">
+                  <div className="h-12 md:h-16 w-32 md:w-48 flex items-center justify-center">
+                    <img src="/images/partners/partner1.png" alt="중랑여성인력개발센터" className="max-h-full max-w-full object-contain" />
+                  </div>
+                  <div className="h-12 md:h-16 w-32 md:w-48 flex items-center justify-center">
+                    <img src="/images/partners/partner2.png" alt="한국폴리텍대학" className="max-h-full max-w-full object-contain" />
+                  </div>
+                  <div className="h-12 md:h-16 w-32 md:w-48 flex items-center justify-center">
+                    <img src="/images/partners/partner3.jpg" alt="성남시" className="max-h-full max-w-full object-contain" />
+                  </div>
+                  <div className="h-12 md:h-16 w-32 md:w-48 flex items-center justify-center">
+                    <img src="/images/partners/partner4.jpg" alt="두드림" className="max-h-full max-w-full object-contain" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
 
-  if (activeDraft === 'draft1') {
-    return <LayoutDraft1 />;
-  }
-
-  if (activeDraft === 'draft3') {
-    return <LayoutDraft3 />;
-  }
-
-  return <LayoutDraft2 />;
+        {/* Footer */}
+        <footer className="bg-slate-50 text-slate-500 py-8 border-t border-slate-200">
+          <div className="max-w-[1400px] mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="md:col-span-2 flex flex-col lg:flex-row items-start lg:items-center gap-6">
+              <Link to="/" className="shrink-0">
+                <img src={logoUrl} alt="한국진로커리어센터 로고" className="h-12 md:h-16 w-auto object-contain" />
+              </Link>
+              <p className="text-sm md:text-base leading-relaxed text-slate-500 break-keep">
+                개인의 잠재력을 발견하고, 미래를 향한 최적의 커리어 패스를 설계합니다.<br className="hidden 2xl:block" />
+                AI 기반 맞춤형 진단과 전문가의 깊이 있는 컨설팅으로 성공적인 내일을 함께합니다.
+              </p>
+            </div>
+            
+            <div>
+              <h3 className="text-slate-900 font-bold mb-3 text-sm">주요 서비스</h3>
+              <ul className="space-y-2 text-sm font-medium">
+                <li><Link to="/programs/ai-career-counseling" className="hover:text-blue-600 transition-colors">AI 진단 및 상담</Link></li>
+                <li><Link to="/programs/youth-career-empowerment" className="hover:text-blue-600 transition-colors">청년 취업역량강화</Link></li>
+                <li><Link to="/programs/corporate-recruitment-consulting" className="hover:text-blue-600 transition-colors">기업 채용 컨설팅</Link></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="text-slate-900 font-bold mb-3 text-sm">고객지원</h3>
+              <ul className="space-y-2 text-sm font-medium">
+                <li><a href="#" className="hover:text-blue-600 transition-colors">공지사항</a></li>
+                <li><a href="#" className="hover:text-blue-600 transition-colors">자주 묻는 질문</a></li>
+                <li><a href="#" className="hover:text-blue-600 transition-colors">오시는 길</a></li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="max-w-[1400px] mx-auto px-6 mt-8 pt-6 border-t border-slate-200 text-xs flex flex-col md:flex-row justify-between items-center text-slate-400 font-medium">
+            <p>© 2026 한국진로커리어센터. All rights reserved.</p>
+            <div className="flex gap-4 mt-4 md:mt-0">
+              <a href="#" className="hover:text-slate-600 transition-colors">이용약관</a>
+              <a href="#" className="hover:text-slate-600 transition-colors text-slate-600 font-bold">개인정보처리방침</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+      <ConsultationButton />
+    </div>
+  );
 }

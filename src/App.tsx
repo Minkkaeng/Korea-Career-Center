@@ -9,7 +9,6 @@ import Apply from './pages/Apply';
 import Notices from './pages/Notices';
 import Contact from './pages/Contact';
 import JobInfo from './pages/JobInfo';
-import ThemeController from './components/ThemeController';
 import ConsultationWidget from './components/ConsultationWidget';
 
 function App() {
@@ -28,11 +27,9 @@ function App() {
           <Route path="/job-info" element={<JobInfo />} />
         </Route>
       </Routes>
-      <ThemeController />
       <ConsultationWidget />
     </>
   );
 }
 
 export default App;
-
