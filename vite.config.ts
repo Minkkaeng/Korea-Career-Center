@@ -8,4 +8,5 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  base: '/Korea-Career-Center/', // 이 줄을 추가합니다. (앞뒤 슬래시 필수)
 })
