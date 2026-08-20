@@ -32,16 +32,23 @@ export default function Header() {
         { path: '/organization', label: '조직도' }
       ]
     },
-    { path: '/programs/youth', label: '프로그램 안내' },
+    { path: '/programs', label: '프로그램 안내' },
     { 
       path: '/job-info', 
-      label: '직업정보',
+      label: '글로벌 AI·로봇 직무',
       children: [
-        { path: '/job-info', label: '직무인터뷰' },
-        { path: '/job-info', label: '취업정보' }
+        { path: '/job-info', label: '세계적인 AI 기술 동향' },
+        { path: '/job-info', label: '미래 로봇 산업 트렌드' }
       ]
     },
-    { path: '/notices', label: '공지사항/소식' },
+    { 
+      path: '/notices', 
+      label: '공지 및 커뮤니티', 
+      children: [
+        { path: '/notices', label: '공지사항/소식' },
+        { path: '/notices', label: '직무/전문가 인터뷰' }
+      ]
+    },
     { path: '/contact', label: '오시는 길' },
   ];
 
