@@ -39,7 +39,7 @@ export default function Home() {
             initial={{ scale: 1.1, opacity: 0 }}
             animate={{ scale: 1, opacity: 0.4 }}
             transition={{ duration: 1.5, ease: 'easeOut' }}
-            src="/images/hero.jpg" 
+            src={`${import.meta.env.BASE_URL}images/hero.jpg`}
             alt="배경 이미지" 
             className="w-full h-full object-cover object-center mix-blend-luminosity"
           />

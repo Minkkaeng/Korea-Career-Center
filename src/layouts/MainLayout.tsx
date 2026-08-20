@@ -22,17 +22,17 @@ export default function MainLayout() {
             <div className="flex items-center w-max animate-marquee">
               {[...Array(4)].map((_, i) => (
                 <div key={i} className="flex items-center gap-16 md:gap-32 px-8 md:px-16 shrink-0">
-                  <div className="h-12 md:h-16 w-32 md:w-48 flex items-center justify-center">
-                    <img src="/images/partners/partner1.png" alt="중랑여성인력개발센터" className="max-h-full max-w-full object-contain" />
+                  <div className="w-32 md:w-48 h-12 md:h-16 flex items-center justify-center shrink-0">
+                    <img src={`${import.meta.env.BASE_URL}images/partners/partner1.png`} alt="종로여성인력개발센터" className="max-h-full max-w-full object-contain" />
                   </div>
-                  <div className="h-12 md:h-16 w-32 md:w-48 flex items-center justify-center">
-                    <img src="/images/partners/partner2.png" alt="한국폴리텍대학" className="max-h-full max-w-full object-contain" />
+                  <div className="w-32 md:w-48 h-12 md:h-16 flex items-center justify-center shrink-0">
+                    <img src={`${import.meta.env.BASE_URL}images/partners/partner2.png`} alt="한국정보통신산업진흥원" className="max-h-full max-w-full object-contain" />
                   </div>
-                  <div className="h-12 md:h-16 w-32 md:w-48 flex items-center justify-center">
-                    <img src="/images/partners/partner3.jpg" alt="성남시" className="max-h-full max-w-full object-contain" />
+                  <div className="w-32 md:w-48 h-12 md:h-16 flex items-center justify-center shrink-0">
+                    <img src={`${import.meta.env.BASE_URL}images/partners/partner3.jpg`} alt="대한상공회의소" className="max-h-full max-w-full object-contain" />
                   </div>
-                  <div className="h-12 md:h-16 w-32 md:w-48 flex items-center justify-center">
-                    <img src="/images/partners/partner4.jpg" alt="두드림" className="max-h-full max-w-full object-contain" />
+                  <div className="w-32 md:w-48 h-12 md:h-16 flex items-center justify-center shrink-0">
+                    <img src={`${import.meta.env.BASE_URL}images/partners/partner4.jpg`} alt="성남시청" className="max-h-full max-w-full object-contain" />
                   </div>
                 </div>
               ))}
