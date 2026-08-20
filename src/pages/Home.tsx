@@ -43,19 +43,19 @@ export default function Home() {
     <div className="w-full bg-white text-slate-900 font-sans">
       
       {/* Hero Section (Sticky Overlay) */}
-      <section className="sticky top-0 w-full h-screen bg-slate-900 flex items-center justify-center overflow-hidden z-0">
+      <section className="sticky top-0 w-full h-screen bg-white flex items-center justify-center overflow-hidden z-0">
         
         {/* 동적 배경 */}
         <div className="absolute inset-0">
           <motion.img 
             initial={{ scale: 1.1, opacity: 0 }}
-            animate={{ scale: 1, opacity: 0.6 }}
+            animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1.5, ease: 'easeOut' }}
             src={`${import.meta.env.BASE_URL}images/hero.jpg`}
             alt="배경 이미지" 
             className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-slate-900/40" />
+          <div className="absolute inset-0 bg-black/30" />
         </div>
 
         {/* 통합된 원본 텍스트 레이어 */}
