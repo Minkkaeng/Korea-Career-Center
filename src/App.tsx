@@ -1,4 +1,5 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { ReactLenis } from 'lenis/react';
 import MainLayout from './layouts/MainLayout';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -13,7 +14,7 @@ import ConsultationWidget from './components/ConsultationWidget';
 
 function App() {
   return (
-    <>
+    <ReactLenis root>
       <Routes>
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
@@ -28,7 +29,7 @@ function App() {
         </Route>
       </Routes>
       <ConsultationWidget />
-    </>
+    </ReactLenis>
   );
 }
 

@@ -18,20 +18,32 @@ export default function Home() {
   // --- 일반 스크롤 애니메이션 변수 ---
   const fadeInUp = {
     hidden: { opacity: 0, y: 80 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { 
+        duration: 1.2, 
+        ease: [0.16, 1, 0.3, 1] 
+      } 
+    }
   };
+  
   const staggerContainer = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1
+      }
+    }
   };
 
   return (
     <div className="w-full bg-white text-slate-900 font-sans">
       
-      {/* 
-        Hero Section
-      */}
-      <section className="relative w-full h-screen bg-[#050B14] flex items-center justify-center overflow-hidden">
+      {/* Hero Section (Sticky Overlay) */}
+      <section className="sticky top-0 w-full h-screen bg-[#050B14] flex items-center justify-center overflow-hidden z-0">
         
         {/* 동적 배경 */}
         <div className="absolute inset-0">
