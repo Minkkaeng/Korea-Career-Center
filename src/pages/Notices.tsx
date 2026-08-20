@@ -119,32 +119,38 @@ export default function Notices() {
           {/* Notice Tab Content */}
           {activeTab === 'notice' && (
             <div className="animate-in fade-in duration-500">
-              <div className="space-y-4">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {notices.map((notice, idx) => (
                   <div 
                     key={notice.id} 
-                    className="group bg-white p-6 rounded border border-slate-200 hover:border-[#1e3a8a] transition-all cursor-pointer flex flex-col md:flex-row gap-6 items-start md:items-center"
+                    className={`group bg-white p-6 rounded-xl border transition-all cursor-pointer flex flex-col h-full hover:-translate-y-1 hover:shadow-md ${notice.isNotice ? 'border-[#1e3a8a]/30 bg-blue-50/30' : 'border-slate-200 hover:border-[#1e3a8a]'}`}
                   >
-                    <div className="flex md:flex-col items-center md:items-start shrink-0 gap-3 md:gap-2 md:w-32">
+                    <div className="flex justify-between items-center mb-4">
                       {notice.isNotice ? (
-                        <span className="px-3 py-1 bg-blue-50 text-blue-700 text-xs font-bold rounded border border-blue-200 flex items-center gap-1">
-                          <Pin className="w-3 h-3" /> 필독
+                        <span className="px-3 py-1 bg-[#1e3a8a] text-white text-[11px] font-bold rounded-sm flex items-center gap-1 shadow-sm">
+                          <Pin className="w-3 h-3" /> 필독 공지
                         </span>
                       ) : (
-                        <span className="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded border border-slate-200 flex items-center gap-1">
+                        <span className="px-3 py-1 bg-slate-100 text-slate-600 text-[11px] font-bold rounded-sm border border-slate-200 flex items-center gap-1">
                           {notice.category}
                         </span>
                       )}
-                      <div className="text-sm text-slate-400 font-medium font-mono">{notice.date}</div>
                     </div>
                     
-                    <div className="flex-1">
-                      <h3 className="text-[18px] font-bold text-slate-900 mb-2 group-hover:text-[#1e3a8a] transition-colors line-clamp-1">{notice.title}</h3>
-                      <p className="text-slate-500 text-[15px] line-clamp-1">{notice.content}</p>
+                    <div className="flex-1 mb-6">
+                      <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-[#1e3a8a] transition-colors line-clamp-2 leading-snug">
+                        {notice.title}
+                      </h3>
+                      <p className="text-slate-500 text-[14px] line-clamp-3 leading-relaxed break-keep">
+                        {notice.content}
+                      </p>
                     </div>
                     
-                    <div className="hidden md:flex shrink-0 w-10 h-10 rounded border border-slate-200 items-center justify-center group-hover:bg-[#1e3a8a] group-hover:border-[#1e3a8a] group-hover:text-white transition-all text-slate-400">
-                      <ChevronRight className="w-5 h-5" />
+                    <div className="flex items-center justify-between text-slate-400 text-sm border-t border-slate-100/80 pt-4 mt-auto">
+                      <div className="font-mono font-medium">{notice.date}</div>
+                      <div className="flex items-center gap-1 font-bold group-hover:text-[#1e3a8a] transition-colors">
+                        자세히 <ChevronRight className="w-4 h-4" />
+                      </div>
                     </div>
                   </div>
                 ))}
