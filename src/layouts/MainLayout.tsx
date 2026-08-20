@@ -15,7 +15,7 @@ export default function MainLayout() {
       </main>
       
       {/* Global Footer Area */}
-      <div className="flex flex-col min-h-screen justify-center bg-white">
+      <div className="flex flex-col bg-white">
         {/* Partners Marquee Banner (Global before footer) */}
         <div className="w-full bg-white overflow-hidden border-b border-slate-100 py-6">
           <div className="relative flex overflow-hidden w-full group">
