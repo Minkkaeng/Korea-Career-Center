@@ -52,7 +52,7 @@ export default function Header() {
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3 group">
           <div className="transition-all duration-300 flex items-center justify-center">
-            <img src={logoUrl} alt="한국진로커리어센터 로고" className={`${isTransparent ? 'h-9 brightness-0 invert' : 'h-10'} w-auto transition-all duration-300`} />
+            <img src={logoUrl} alt="한국진로커리어센터 로고" className={`${isTransparent ? 'h-10' : 'h-10'} w-auto transition-all duration-300`} />
           </div>
           <span className={`font-extrabold tracking-tight text-lg ${textColor}`}>한국진로커리어센터</span>
         </Link>
