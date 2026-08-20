@@ -27,27 +27,24 @@ export default function Header() {
     { path: '/', label: 'HOME' },
     { 
       path: '/about', 
-      label: '센터소개',
+      label: '센터 안내',
       children: [
+        { path: '/about', label: '센터 소개 (연혁)' },
         { path: '/organization', label: '조직도' }
       ]
     },
-    { path: '/programs', label: '프로그램 안내' },
     { 
-      path: '/job-info', 
-      label: '글로벌 AI·로봇 직무',
+      path: '/programs', 
+      label: '프로그램',
       children: [
-        { path: '/job-info', label: '세계적인 AI 기술 동향' },
-        { path: '/job-info', label: '미래 로봇 산업 트렌드' }
+        { path: '/job-info', label: '채용정보' },
+        { path: '/programs', label: '전체 프로그램' },
+        { path: '/apply', label: 'AI 활용 진로상담' }
       ]
     },
     { 
       path: '/notices', 
-      label: '공지 및 커뮤니티', 
-      children: [
-        { path: '/notices', label: '공지사항/소식' },
-        { path: '/notices', label: '직무/전문가 인터뷰' }
-      ]
+      label: '공지·소식'
     },
     { path: '/contact', label: '오시는 길' },
   ];
