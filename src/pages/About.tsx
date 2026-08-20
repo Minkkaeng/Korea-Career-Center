@@ -1,4 +1,4 @@
-import { Target, Lightbulb, Users, ShieldCheck, ArrowRight, Network } from 'lucide-react';
+import { Target, Lightbulb, Users, ShieldCheck, ArrowRight, Network, Rocket, Briefcase, Infinity } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function About() {
@@ -12,90 +12,86 @@ export default function About() {
         <div className="absolute inset-0 bg-gradient-to-t from-slate-50 to-transparent opacity-80"></div>
         
         <div className="max-w-[1240px] mx-auto px-6 relative z-10">
-          <div className="max-w-2xl">
+          <div className="max-w-3xl">
             <span className="inline-flex items-center gap-2 px-3 py-1 bg-[#1e3a8a]/5 text-[#1e3a8a] border border-[#1e3a8a]/10 font-bold text-xs tracking-widest mb-6 uppercase rounded-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-[#1e3a8a]"></span>
               About Center
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-[56px] font-black text-slate-900 leading-[1.2] mb-6 tracking-tight">
-              성공적인 비즈니스를 위한 <br className="hidden md:block"/>
-              <span className="text-[#1e3a8a]">신뢰할 수 있는 파트너</span>
+            <h1 className="text-4xl md:text-5xl lg:text-[50px] font-black text-slate-900 leading-[1.3] mb-6 tracking-tight break-keep">
+              기술과 사람을 잇는 <br className="hidden md:block"/>
+              <span className="text-[#1e3a8a]">미래 인재 양성 파트너</span>, <br className="hidden md:block"/>
+              한국진로커리어센터
             </h1>
-            <p className="text-lg text-slate-600 leading-relaxed mb-10">
-              한국진로커리어센터는 수년간 축적된 산업 데이터와 검증된 컨설팅 방법론을 바탕으로 개인의 역량 강화와 기업의 인재 확보를 동시에 지원합니다.
+            <p className="text-lg md:text-xl text-slate-600 leading-[1.8] mb-10 break-keep">
+              한국진로커리어센터는 급변하는 4차 산업 기술 트렌드와 고용 시장에 발맞추어, 실무 역량 중심의 진로·취업 솔루션을 제공하는 전문 교육 기관입니다. 한국폴리텍대학 로봇캠퍼스 산학협력 및 지자체 일자리 거버넌스를 바탕으로, 공공기관과 기업이 신뢰하는 검증된 교육 인프라를 구축하고 있습니다.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Link to="/programs/ai-consulting" className="px-8 py-4 bg-[#1e3a8a] text-white font-bold rounded shadow-md hover:shadow-lg hover:bg-[#1e40af] transition-all duration-300 flex items-center gap-2">
-                컨설팅 시작하기 <ArrowRight className="w-5 h-5" />
-              </Link>
-              <Link to="/contact" className="px-8 py-4 bg-white text-slate-700 font-bold rounded border border-slate-200 hover:bg-slate-50 transition-all duration-300">
-                오시는 길
-              </Link>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* Greeting Section */}
-      <section className="py-24 bg-white">
-        <div className="max-w-[1240px] mx-auto px-6">
-          <div className="grid lg:grid-cols-12 gap-16 items-start">
-            <div className="lg:col-span-5">
-              <div className="sticky top-32">
-                <h2 className="text-3xl lg:text-[40px] font-black text-slate-900 mb-6 leading-tight">
-                  "데이터와 현장 경험의 결합으로 가장 확실한 솔루션을 제공합니다."
-                </h2>
-                <div className="h-1 w-16 bg-[#1e3a8a] mb-6"></div>
-                <p className="text-lg font-bold text-slate-900">센터장 올림</p>
-                <p className="text-slate-500">한국진로커리어센터</p>
-              </div>
-            </div>
-            
-            <div className="lg:col-span-7 space-y-6 text-slate-600 text-[17px] leading-[1.8]">
-              <p>
-                안녕하십니까, 한국진로커리어센터를 찾아주신 여러분을 진심으로 환영합니다.
-              </p>
-              <p>
-                최근 산업 환경은 급격하게 변화하고 있으며, 그에 따라 요구되는 인재상과 직무 역량 역시 빠르게 고도화되고 있습니다. 
-                과거의 천편일률적인 방식으로는 치열한 비즈니스 환경에서 우위를 점하기 어렵습니다.
-              </p>
-              <p>
-                저희 센터는 철저한 <strong>데이터 분석에 기반한 객관적인 평가</strong>와 
-                <strong>현장 전문가들의 통찰력</strong>을 결합하여, 단순한 조언을 넘어 실제 성과로 이어지는 컨설팅을 제공합니다.
-              </p>
-              <p>
-                개인 고객에게는 본인의 잠재력을 극대화할 수 있는 커리어 로드맵을, 
-                기업 고객에게는 조직 성장을 견인할 최적의 인재 채용 및 육성 솔루션을 약속드립니다.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Core Values */}
+      {/* Core Solutions Section */}
       <section className="py-24 bg-slate-50 border-t border-slate-200">
         <div className="max-w-[1240px] mx-auto px-6">
-          <div className="mb-16">
-            <span className="text-[#1e3a8a] font-bold tracking-widest text-sm mb-3 block uppercase">Core Values</span>
-            <h2 className="text-3xl md:text-[42px] font-black text-slate-900">우리의 핵심 가치</h2>
+          <div className="mb-16 text-center max-w-2xl mx-auto">
+            <span className="text-[#1e3a8a] font-bold tracking-widest text-sm mb-3 block uppercase">Our Solutions</span>
+            <h2 className="text-3xl md:text-[40px] font-black text-slate-900 break-keep">미래를 준비하는 3가지 핵심 솔루션</h2>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { icon: Target, title: '정확성', desc: '데이터와 근거에 기반한 객관적이고 과학적인 분석 시스템' },
-              { icon: Lightbulb, title: '전문성', desc: '각 산업 분야별 최고 수준의 컨설턴트 및 멘토진' },
-              { icon: Network, title: '파트너십', desc: '고객의 성공을 최우선으로 생각하는 동반성장 생태계' },
-              { icon: ShieldCheck, title: '신뢰성', desc: '투명하고 검증된 프로세스를 통한 최상의 결과 보장' },
-            ].map((value, idx) => (
-              <div key={idx} className="bg-white p-10 rounded shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
-                <value.icon className="w-10 h-10 text-[#1e3a8a] mb-6" strokeWidth={1.5} />
-                <h3 className="text-xl font-bold text-slate-900 mb-3">{value.title}</h3>
-                <p className="text-slate-500 text-[15px] leading-relaxed">{value.desc}</p>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white p-10 rounded-xl shadow-sm border border-slate-200 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2">
+              <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mb-8">
+                <Rocket className="w-8 h-8 text-[#1e3a8a]" strokeWidth={1.5} />
               </div>
-            ))}
+              <h3 className="text-2xl font-bold text-slate-900 mb-4 break-keep">신산업 맞춤형 인재 양성</h3>
+              <p className="text-slate-500 text-[16px] leading-relaxed break-keep">
+                4차 산업 및 기술 특화 인재를 위한 실무 특강 및 산학 연계 취업 캠프 운영
+              </p>
+            </div>
+
+            <div className="bg-white p-10 rounded-xl shadow-sm border border-slate-200 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2">
+              <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mb-8">
+                <Target className="w-8 h-8 text-[#1e3a8a]" strokeWidth={1.5} />
+              </div>
+              <h3 className="text-2xl font-bold text-slate-900 mb-4 break-keep">1:1 밀착형 역량 컨설팅</h3>
+              <p className="text-slate-500 text-[16px] leading-relaxed break-keep">
+                정밀 직무 분석, 합격 서류 완성, 실전 모의면접 클리닉
+              </p>
+            </div>
+
+            <div className="bg-white p-10 rounded-xl shadow-sm border border-slate-200 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2">
+              <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mb-8">
+                <Infinity className="w-8 h-8 text-[#1e3a8a]" strokeWidth={1.5} />
+              </div>
+              <h3 className="text-2xl font-bold text-slate-900 mb-4 break-keep">전 생애주기 일자리 솔루션</h3>
+              <p className="text-slate-500 text-[16px] leading-relaxed break-keep">
+                첫 진로를 설계하는 청년부터 산업 전환기 재도약을 준비하는 구직자까지 맞춤형 지원
+              </p>
+            </div>
           </div>
         </div>
       </section>
+
+      {/* Vision Statement Section */}
+      <section className="py-24 bg-[#050B14] text-white">
+        <div className="max-w-[1240px] mx-auto px-6 text-center">
+          <div className="max-w-4xl mx-auto space-y-8">
+            <h2 className="text-3xl md:text-[40px] lg:text-[48px] font-black leading-[1.4] tracking-tight break-keep">
+              막연한 조언 대신<br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">실전에 바로 쓰이는 전략</span>을 제시합니다.
+            </h2>
+            <p className="text-xl md:text-2xl text-slate-300 font-medium leading-relaxed break-keep">
+              구직자에게는 든든한 커리어 러닝메이트로,<br className="hidden md:block" />
+              기관 및 기업에는 최적의 고용 성과를 창출하는 신뢰의 파트너로 함께 하겠습니다.
+            </p>
+            <div className="pt-8">
+              <Link to="/contact" className="inline-flex items-center justify-center px-10 py-4 bg-white text-[#050B14] rounded-full font-bold text-lg hover:bg-cyan-400 transition-colors duration-300 gap-2 group">
+                파트너십 문의하기 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }
