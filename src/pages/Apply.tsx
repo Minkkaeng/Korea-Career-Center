@@ -98,7 +98,7 @@ export default function Apply() {
   return (
     <div className="w-full bg-slate-50 font-sans min-h-screen pb-32">
       {/* Hero */}
-      <div className="bg-white pt-24 pb-16 border-b border-slate-200">
+      <div className="hidden">
         <div className="max-w-[1240px] mx-auto px-6 text-center">
           <span className="text-[#1e3a8a] font-bold tracking-widest text-sm mb-4 block uppercase">Contact Us</span>
           <h1 className="text-4xl md:text-[42px] font-black text-slate-900 mb-6 tracking-tight">상담·교육 신청</h1>
