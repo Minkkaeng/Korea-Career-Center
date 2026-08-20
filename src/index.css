@@ -41,6 +41,8 @@
 
 body {
   @apply bg-white text-slate-900 antialiased;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 @keyframes marquee {

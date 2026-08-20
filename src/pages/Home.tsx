@@ -75,7 +75,7 @@ export default function Home() {
 
             <motion.h1 
               initial="hidden" animate="visible" variants={fadeInUp} transition={{ delay: 0.1 }}
-              className="text-[3rem] md:text-[5rem] lg:text-[7rem] font-black leading-[1.1] tracking-tight mb-8 drop-shadow-2xl"
+              className="text-5xl md:text-7xl lg:text-[80px] font-black leading-[1.1] tracking-tight break-keep mb-8 drop-shadow-2xl"
             >
               미래를 연결하는<br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">초개인화 진로 탐색</span>
@@ -83,7 +83,7 @@ export default function Home() {
             
             <motion.p 
               initial="hidden" animate="visible" variants={fadeInUp} transition={{ delay: 0.2 }}
-              className="text-xl md:text-2xl lg:text-3xl text-slate-300 font-medium mb-12 drop-shadow-lg max-w-3xl leading-relaxed"
+              className="text-xl md:text-2xl lg:text-3xl text-slate-300 font-medium mb-12 drop-shadow-lg max-w-3xl leading-relaxed break-keep"
             >
               최신 AI 데이터 분석을 기반으로 당신의 커리어 패스를 예측하고,<br className="hidden md:block" />가장 혁신적인 성장의 길을 안내합니다.
             </motion.p>
@@ -110,11 +110,11 @@ export default function Home() {
             variants={fadeInUp}
             className="text-center"
           >
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black leading-[1.15] tracking-tight text-slate-900 mb-8">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black leading-[1.15] tracking-tight break-keep text-slate-900 mb-8">
               복잡한 진로 고민은<br/>
               <span className="text-blue-600">보다 쉽게.</span>
             </h2>
-            <p className="text-xl md:text-3xl text-slate-500 font-medium leading-relaxed">
+            <p className="text-xl md:text-3xl text-slate-500 font-medium leading-relaxed break-keep">
               몇 번의 클릭만으로 나에게 맞는 과정을 간편하게 선택하고<br className="hidden md:block"/>
               AI 상담부터 취업 연계까지 손쉽게 신청할 수 있어요.
             </p>
@@ -133,11 +133,11 @@ export default function Home() {
             className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24"
           >
             <div className="w-full lg:w-1/2">
-              <motion.h2 variants={fadeInUp} className="text-4xl md:text-6xl lg:text-7xl font-black leading-[1.15] tracking-tight text-slate-900 mb-8">
+              <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl lg:text-6xl font-black leading-[1.15] tracking-tight break-keep text-slate-900 mb-8">
                 한 번의 진단으로<br/>
                 <span className="text-blue-600">나에게 딱 맞는<br/>프로그램 매칭.</span>
               </motion.h2>
-              <motion.p variants={fadeInUp} className="text-xl md:text-2xl text-slate-500 font-medium mb-12 leading-relaxed">
+              <motion.p variants={fadeInUp} className="text-xl md:text-2xl text-slate-500 font-medium mb-12 leading-relaxed break-keep">
                 마이페이지에서 내 진단 결과에 맞는<br/>가장 완벽한 커리어 패스를 확인하세요.
               </motion.p>
               <motion.div variants={fadeInUp}>
@@ -182,11 +182,11 @@ export default function Home() {
             viewport={{ once: false, amount: 0.3 }}
             variants={fadeInUp}
           >
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black leading-[1.15] tracking-tight mb-8">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black leading-[1.15] tracking-tight break-keep mb-8">
               대기 없이<br/>
               <span className="text-cyan-400">바로 시작하세요.</span>
             </h2>
-            <p className="text-xl md:text-3xl text-slate-400 font-medium mb-24 leading-relaxed">
+            <p className="text-xl md:text-3xl text-slate-400 font-medium mb-24 leading-relaxed break-keep">
               선착순 마감 없는 상시 교육 과정으로<br className="hidden md:block"/>
               내 커리어 성장을 지금 당장 시작하세요.
             </p>
@@ -207,7 +207,7 @@ export default function Home() {
               <motion.div key={item.id} variants={fadeInUp} className="bg-slate-800/30 p-10 md:p-12 rounded-[2rem] border border-slate-700/50 hover:bg-slate-800 transition-colors duration-500">
                 <span className="text-5xl md:text-6xl font-black text-slate-700 mb-8 block">{item.id}</span>
                 <h4 className="text-2xl md:text-3xl font-bold mb-4">{item.title}</h4>
-                <p className="text-lg text-slate-400 leading-relaxed">{item.desc}</p>
+                <p className="text-lg text-slate-400 leading-relaxed break-keep">{item.desc}</p>
               </motion.div>
             ))}
           </motion.div>
