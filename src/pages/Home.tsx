@@ -78,15 +78,15 @@ export default function Home() {
               className="text-5xl md:text-7xl lg:text-[80px] font-black leading-[1.1] tracking-tight break-keep mb-8 drop-shadow-2xl text-white"
             >
               미래를 설계하는<br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-cyan-100">맞춤형 커리어 솔루션</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-cyan-100">AI 기반 맞춤형 커리어 솔루션</span>
             </motion.h1>
 
             <motion.p 
               initial="hidden" animate="visible" variants={fadeInUp} transition={{ delay: 0.2 }}
               className="text-lg md:text-xl text-slate-100 max-w-2xl font-medium break-keep mb-12 drop-shadow-lg leading-relaxed"
             >
-              최신 AI 데이터 분석을 기반으로 당신의 커리어 패스를 예측하고,<br className="hidden md:block" />
-              가장 혁신적인 성장의 길을 안내합니다.
+              정교한 AI 진단부터 맞춤형 진학·취업·창업.<br className="hidden md:block" />
+              당신만을 위한 성공적인 커리어 로드맵을 제시합니다.
             </motion.p>
             
             <motion.div initial="hidden" animate="visible" variants={fadeInUp} transition={{ delay: 0.3 }}>
