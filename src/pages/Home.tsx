@@ -4,9 +4,9 @@ import { ArrowRight } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function Home() {
-  // 풀페이지 스냅 스크롤 적용
+  // 일반 부드러운 스크롤 (자동 스크롤 비활성화)
   useEffect(() => {
-    document.documentElement.style.scrollSnapType = 'y mandatory';
+    document.documentElement.style.scrollSnapType = '';
     document.documentElement.style.scrollBehavior = 'smooth';
     
     return () => {
@@ -31,7 +31,7 @@ export default function Home() {
       {/* 
         Hero Section
       */}
-      <section className="relative w-full h-screen snap-start snap-always bg-[#050B14] flex items-center justify-center overflow-hidden">
+      <section className="relative w-full h-screen bg-[#050B14] flex items-center justify-center overflow-hidden">
         
         {/* 동적 배경 */}
         <div className="absolute inset-0">
@@ -89,7 +89,7 @@ export default function Home() {
       </section>
 
       {/* Feature 1: 간편한 상담 신청 */}
-      <section className="relative w-full min-h-screen snap-start snap-always flex items-center py-32 md:py-48 bg-white z-10">
+      <section className="relative w-full min-h-screen flex items-center py-32 md:py-48 bg-white z-10">
         <div className="max-w-[1400px] w-full mx-auto px-6">
           <motion.div 
             initial="hidden"
@@ -111,7 +111,7 @@ export default function Home() {
       </section>
 
       {/* Feature 2: 맞춤형 프로그램 */}
-      <section className="relative w-full min-h-screen snap-start snap-always flex items-center py-32 md:py-48 bg-slate-50 border-y border-slate-100 z-10">
+      <section className="relative w-full min-h-screen flex items-center py-32 md:py-48 bg-slate-50 border-y border-slate-100 z-10">
         <div className="max-w-[1400px] w-full mx-auto px-6">
           <motion.div 
             initial="hidden"
@@ -162,7 +162,7 @@ export default function Home() {
       </section>
 
       {/* Feature 3: 바로 시작하는 교육 */}
-      <section className="relative w-full min-h-screen snap-start snap-always flex items-center py-32 md:py-48 bg-[#050B14] text-white z-10">
+      <section className="relative w-full min-h-screen flex items-center py-32 md:py-48 bg-[#050B14] text-white z-10">
         <div className="max-w-[1400px] w-full mx-auto px-6 text-center">
           <motion.div
             initial="hidden"
