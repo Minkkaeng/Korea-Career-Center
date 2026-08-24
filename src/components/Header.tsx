@@ -24,7 +24,6 @@ export default function Header() {
   const textColor = isTransparent ? 'text-white drop-shadow-md' : 'text-slate-900';
 
   const navItems = [
-    { path: '/', label: 'HOME' },
     { 
       path: '/about', 
       label: '센터 안내',
@@ -37,9 +36,10 @@ export default function Header() {
       path: '/programs', 
       label: '프로그램',
       children: [
-        { path: '/job-info', label: '채용정보' },
-        { path: '/programs', label: '전체 프로그램' },
-        { path: '/apply', label: 'AI 활용 진로상담' }
+        { path: '/programs/youth', label: '청년 취업역량강화' },
+        { path: '/programs/ai', label: 'AI 활용 진로상담' },
+        { path: '/programs/corporate', label: '기업 채용 컨설팅' },
+        { path: '/programs/special', label: '특강·위탁교육' }
       ]
     },
     { 
