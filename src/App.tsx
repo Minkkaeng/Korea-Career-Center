@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { ReactLenis } from 'lenis/react';
 import MainLayout from './layouts/MainLayout';
 import Home from './pages/Home';
@@ -16,14 +16,18 @@ import Contact from './pages/Contact';
 import JobInfo from './pages/JobInfo';
 import ConsultationWidget from './components/ConsultationWidget';
 
+import ScrollToTop from './components/ScrollToTop';
+
 function App() {
   return (
     <ReactLenis root>
+      <ScrollToTop />
       <Routes>
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/organization" element={<Organization />} />
+          <Route path="/programs" element={<Navigate to="/programs/youth" replace />} />
           <Route path="/programs/youth" element={<Youth />} />
           <Route path="/programs/ai" element={<AiConsulting />} />
           <Route path="/programs/corporate" element={<Corporate />} />
