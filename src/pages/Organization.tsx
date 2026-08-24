@@ -130,10 +130,10 @@ export default function Organization() {
                     <span className="font-medium text-slate-700">경기대학교 행정복지상담대학원 직업학과(석사)</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Briefcase className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
+                    <Briefcase className="w-5 h-5 text-slate-400 shrink-0 mt-0.5" />
                     <div>
-                      <span className="inline-block px-1.5 py-0.5 bg-blue-50 text-blue-600 text-[11px] font-black rounded mr-2 border border-blue-100">현</span>
-                      <span className="font-medium text-slate-700">성남산업진흥원 IT기업매칭 인재매칭 자문위원</span>
+                      <span className="inline-block px-1.5 py-0.5 bg-slate-100 text-slate-500 text-[11px] font-black rounded mr-2 border border-slate-200">전</span>
+                      <span className="text-slate-500">성남산업진흥원 IT기업매칭 인재매칭 자문위원</span>
                     </div>
                   </li>
                   <li className="flex items-start gap-3">
