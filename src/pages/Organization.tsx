@@ -6,13 +6,13 @@ export default function Organization() {
     {
       name: '정옥경 교수',
       role: '고문',
-      image: `\${import.meta.env.BASE_URL}images/org_jung_ok.jpg`,
+      image: `${import.meta.env.BASE_URL}images/org_jung_ok.jpg`,
       details: ['한국진로커리어센터 고문']
     },
     {
       name: '김정기 박사',
       role: '고문 (박사)',
-      image: `\${import.meta.env.BASE_URL}images/org_kim_jung.jpg`,
+      image: `${import.meta.env.BASE_URL}images/org_kim_jung.jpg`,
       details: [
         '최종학력: 한성대학교 컨설팅학 박사',
         '인빌드컨설팅 대표 · 한국경영인증원 전문위원',
@@ -26,7 +26,7 @@ export default function Organization() {
     {
       name: '권태호 대표',
       role: '홍보이사',
-      image: `\${import.meta.env.BASE_URL}images/org_kwon_tae.jpg`,
+      image: `${import.meta.env.BASE_URL}images/org_kwon_tae.jpg`,
       details: [
         '성남인사이트 대표',
         '성남시체육회 이사 (제3대)',
@@ -41,7 +41,7 @@ export default function Organization() {
     {
       name: '권재규 교수',
       role: '대표강사',
-      image: `\${import.meta.env.BASE_URL}images/org_kwon_jae.png`,
+      image: `${import.meta.env.BASE_URL}images/org_kwon_jae.png`,
       details: [
         '동원대학교 겸임교수 (소프트웨어 학과)',
         '대통령 직속 지방시대위원회 평가위원 (데이터/AI)',
@@ -53,7 +53,7 @@ export default function Organization() {
     {
       name: '명태현 이사',
       role: '대표강사',
-      image: `\${import.meta.env.BASE_URL}images/org_myung_tae.jpg`,
+      image: `${import.meta.env.BASE_URL}images/org_myung_tae.jpg`,
       details: [
         '㈜넥스엠 대표이사, 한국EBD연구회 사무총장',
         '대한의료데이터협회 상임이사 (의료 인공지능 개발 PM)',

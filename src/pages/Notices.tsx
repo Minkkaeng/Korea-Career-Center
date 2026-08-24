@@ -11,7 +11,7 @@ export default function Notices() {
       date: '2026.06',
       content: '한국진로커리어센터가 중랑여성인력개발센터와 업무협약을 체결하고, AI·디지털 일자리위원회에 공식 참여합니다.',
       url: 'http://snsite.kr/bbs/board.php?bo_table=news02&wr_id=13231',
-      images: [`\${import.meta.env.BASE_URL}images/news1.jpg`, `\${import.meta.env.BASE_URL}images/news2.jpg`, `\${import.meta.env.BASE_URL}images/news3.jpg`]
+      images: [`${import.meta.env.BASE_URL}images/news1.jpg`, `${import.meta.env.BASE_URL}images/news2.jpg`, `${import.meta.env.BASE_URL}images/news3.jpg`]
     },
     {
       id: 2,
