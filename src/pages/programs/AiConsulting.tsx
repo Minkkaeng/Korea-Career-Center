@@ -46,7 +46,7 @@ export default function AiConsulting() {
                 아래 버튼을 눌러 신청서 양식을 다운로드한 후, 작성하여 이메일로 접수해 주시기 바랍니다. (추후 온라인 접수 폼 기능 도입 검토 중)
               </p>
               <a 
-                href="/진로상담_접수원서.docx" 
+                href={`${import.meta.env.BASE_URL}진로상담_접수원서.docx`} 
                 download
                 className="inline-flex items-center gap-2 bg-[#1e3a8a] text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-900 transition-colors shadow-lg hover:shadow-xl hover:-translate-y-1 transform duration-300"
               >
