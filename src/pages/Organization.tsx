@@ -79,8 +79,7 @@ export default function Organization() {
           <div className="flex justify-center mb-16 relative">
             <div className="bg-white border border-slate-200 rounded-2xl p-8 w-[340px] text-center relative z-10 shadow-xl">
               <div className="w-24 h-24 mx-auto bg-blue-50 rounded-full flex items-center justify-center text-[#1e3a8a] mb-5 overflow-hidden border-4 border-white shadow-sm">
-                {/* 안미영 대표님 사진이 추가되면 img 태그로 교체 */}
-                <UserCircle className="w-14 h-14" />
+                <img src={`${import.meta.env.BASE_URL}images/org_ahn_mi.jpg`} alt="안미영 대표" className="w-full h-full object-cover" />
               </div>
               <h2 className="text-2xl font-black text-slate-900 mb-2">안미영 대표</h2>
               <p className="text-sm font-bold text-[#1e3a8a] bg-blue-50 py-1.5 rounded-full inline-block px-5 mb-5">대표이사 겸 센터장</p>
