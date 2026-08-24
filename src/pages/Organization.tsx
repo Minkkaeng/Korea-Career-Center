@@ -3,12 +3,6 @@ import { GraduationCap, Award, Briefcase, BookOpen } from 'lucide-react';
 export default function Organization() {
   const advisors = [
     {
-      name: '정옥경 교수',
-      role: '고문',
-      image: `${import.meta.env.BASE_URL}images/org_jung_ok.jpg`,
-      details: ['현) 한국진로커리어센터 고문']
-    },
-    {
       name: '김정기 박사',
       role: '고문 (박사)',
       image: `${import.meta.env.BASE_URL}images/org_kim_jung.jpg`,
@@ -22,6 +16,12 @@ export default function Organization() {
         '전) 한국커리어코치협회 부회장',
         '전문 분야: 전직지원 및 생애설계 · 블라인드채용 · 면접관교육 · 취업역량강화 · 경력목표 설정 · 구직서류 작성 · 정부지원 제도 등'
       ]
+    },
+    {
+      name: '정옥경 교수',
+      role: '고문',
+      image: `${import.meta.env.BASE_URL}images/org_jung_ok.jpg`,
+      details: ['현) 한국진로커리어센터 고문']
     }
   ];
 
