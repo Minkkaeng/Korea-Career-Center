@@ -1,17 +1,19 @@
-import { GraduationCap, Award, Briefcase, BookOpen } from 'lucide-react';
+const fs = require('fs');
+
+const fileContent = `import { GraduationCap, Award, Briefcase, BookOpen } from 'lucide-react';
 
 export default function Organization() {
   const advisors = [
     {
       name: '정옥경 교수',
       role: '고문',
-      image: `${import.meta.env.BASE_URL}images/org_jung_ok.jpg`,
+      image: \`\${import.meta.env.BASE_URL}images/org_jung_ok.jpg\`,
       details: ['현) 한국진로커리어센터 고문']
     },
     {
       name: '김정기 박사',
       role: '고문 (박사)',
-      image: `${import.meta.env.BASE_URL}images/org_kim_jung.jpg`,
+      image: \`\${import.meta.env.BASE_URL}images/org_kim_jung.jpg\`,
       details: [
         '현) 인빌드컨설팅 대표',
         '현) 한국경영인증원 전문위원',
@@ -27,7 +29,7 @@ export default function Organization() {
     {
       name: '권태호 대표',
       role: '홍보이사',
-      image: `${import.meta.env.BASE_URL}images/org_kwon_tae.jpg`,
+      image: \`\${import.meta.env.BASE_URL}images/org_kwon_tae.jpg\`,
       details: [
         '현) 성남인사이트 대표',
         '현) 성남시체육회 이사 (제3대)',
@@ -44,7 +46,7 @@ export default function Organization() {
     {
       name: '권재규 교수',
       role: '대표강사',
-      image: `${import.meta.env.BASE_URL}images/org_kwon_jae.png`,
+      image: \`\${import.meta.env.BASE_URL}images/org_kwon_jae.png\`,
       details: [
         '현) 동원대학교 겸임교수 (소프트웨어 학과)',
         '현) 대통령 직속 지방시대위원회 평가위원 (데이터/AI)',
@@ -57,7 +59,7 @@ export default function Organization() {
     {
       name: '명태현 이사',
       role: '대표강사',
-      image: `${import.meta.env.BASE_URL}images/org_myung_tae.jpg`,
+      image: \`\${import.meta.env.BASE_URL}images/org_myung_tae.jpg\`,
       details: [
         '현) ㈜넥스엠 대표이사',
         '현) 한국EBD연구회 사무총장',
@@ -90,7 +92,7 @@ export default function Organization() {
     }
 
     return (
-      <li key={idx} className={`text-sm break-keep flex items-start ${textClass}`}>
+      <li key={idx} className={\`text-sm break-keep flex items-start \${textClass}\`}>
         {badge}
         <span className="mt-0.5 leading-snug">{content.trim()}</span>
       </li>
@@ -117,7 +119,7 @@ export default function Organization() {
               
               <div className="shrink-0 relative z-10 text-center">
                 <div className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-white shadow-lg mx-auto mb-5 bg-slate-100">
-                  <img src={`${import.meta.env.BASE_URL}images/org_ahn_mi.jpg`} alt="안미영 대표" className="w-full h-full object-cover" />
+                  <img src={\`\${import.meta.env.BASE_URL}images/org_ahn_mi.jpg\`} alt="안미영 대표" className="w-full h-full object-cover" />
                 </div>
                 <h2 className="text-3xl font-black text-slate-900 mb-2 tracking-tight">안미영 대표</h2>
                 <p className="text-sm font-bold text-[#1e3a8a] bg-blue-50 py-1.5 rounded-full inline-block px-5">대표이사 겸 센터장</p>
@@ -216,3 +218,7 @@ export default function Organization() {
     </div>
   );
 }
+`;
+
+fs.writeFileSync('src/pages/Organization.tsx', fileContent, 'utf8');
+console.log('Layout updated.');
