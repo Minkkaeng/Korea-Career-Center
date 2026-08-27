@@ -1,8 +1,25 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { notFound } from "next/navigation";
-import { programs } from "@/content/home";
-import styles from "./page.module.css";
-export function generateStaticParams(){return programs.map(program=>({slug:program.slug}))}
-export async function generateMetadata({params}:{params:Promise<{slug:string}>}):Promise<Metadata>{const {slug}=await params;const p=programs.find(v=>v.slug===slug);return{title:p?.title??"프로그램"}}
-export default async function ProgramPage({params}:{params:Promise<{slug:string}>}){const {slug}=await params;const program=programs.find(v=>v.slug===slug);if(!program)notFound();return <main className={styles.main}><section className={styles.hero}><div className="container"><span>PROGRAM · {program.number}</span><small>{program.label}</small><h1>{program.title}</h1>{program.subtitle&&<p>{program.subtitle}</p>}<div><Link className="button primary" href="/apply">상담·교육 신청 →</Link><Link className="button glass" href="/programs">전체 프로그램</Link></div></div></section><div className={`container ${styles.body}`}><aside><span>PROGRAM OVERVIEW</span><h2>프로그램 안내</h2></aside><article><p className={styles.lead}>{program.summary}</p><section className={styles.status}><span aria-hidden="true">✦</span><div><h2>상세 프로그램을 준비 중입니다</h2><p>대상, 일정, 장소, 커리큘럼과 신청 방법은 자료를 전달받은 후 정확하게 안내하겠습니다.</p></div></section><div className={styles.info}><div><span>대상</span><b>{program.label}</b></div><div><span>일정</span><b>자료 준비 중</b></div><div><span>장소</span><b>자료 준비 중</b></div><div><span>신청</span><b>서비스 준비 중</b></div></div><Link className={styles.back} href="/programs">← 다른 프로그램 살펴보기</Link></article></div></main>}
+import { ApprovedDesignHost } from "@/components/ApprovedDesignHost";
+
+const titles: Record<string, string> = {
+  youth: "청년 취업역량강화",
+  ai: "AI 활용 진로상담",
+  corporate: "기업 채용 컨설팅",
+  special: "특강·위탁교육",
+  "youth-career-empowerment": "청년 취업역량강화",
+  "ai-career-counseling": "AI 활용 진로상담",
+  "corporate-recruitment-consulting": "기업 채용 컨설팅",
+};
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  return { title: titles[slug] ?? "프로그램" };
+}
+
+export default function ApprovedProgramPage() {
+  return <ApprovedDesignHost />;
+}
