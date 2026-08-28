@@ -40,7 +40,7 @@ export default function Home() {
   };
 
   return (
-    <div className="w-full bg-white text-slate-900 font-sans">
+    <div className="w-full overflow-x-clip bg-white text-slate-900 font-sans">
       {/* Hero Section (Sticky Overlay) */}
       <section className="sticky top-0 w-full h-screen bg-white flex items-center justify-center overflow-hidden z-0">
         {/* 동적 배경 */}
@@ -248,4 +248,3 @@ export default function Home() {
     </div>
   );
 }
-
