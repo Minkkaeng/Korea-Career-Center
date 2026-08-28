@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Send, CheckCircle2, AlertCircle, Building2, User } from 'lucide-react';
-import emailjs from '@emailjs/browser';
 
 export default function Apply() {
   const [formType, setFormType] = useState<'counseling' | 'education'>('counseling');
@@ -12,6 +11,7 @@ export default function Apply() {
     phone: '',
     email: '',
     content: '',
+    website: '',
     privacy: false
   });
 
@@ -48,32 +48,19 @@ export default function Apply() {
     setSubmitStatus('idle');
 
     try {
-      // VITE_APP_EMAILJS_SERVICE_ID, VITE_APP_EMAILJS_TEMPLATE_ID, VITE_APP_EMAILJS_PUBLIC_KEY
-      // 위 환경 변수들을 .env 파일에 설정해야 합니다.
-      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ type: formType, ...formData }),
+      });
 
-      if (!serviceId || !templateId || !publicKey) {
-        console.warn("EmailJS credentials are not configured. Simulating success.");
-        await new Promise(r => setTimeout(r, 1500)); // Simulate network request
-      } else {
-        await emailjs.send(
-          serviceId,
-          templateId,
-          {
-            type: formType === 'counseling' ? '개인 상담 신청' : '교육/제휴 문의',
-            name: formData.name,
-            phone: formData.phone,
-            email: formData.email,
-            message: formData.content,
-          },
-          publicKey
-        );
+      if (!response.ok) {
+        const result = await response.json().catch(() => ({})) as { error?: string };
+        throw new Error(result.error || '문의 전송에 실패했습니다.');
       }
       
       setSubmitStatus('success');
-      setFormData({ name: '', phone: '', email: '', content: '', privacy: false });
+      setFormData({ name: '', phone: '', email: '', content: '', website: '', privacy: false });
     } catch (error) {
       console.error('Failed to send email:', error);
       setSubmitStatus('error');
@@ -115,6 +102,18 @@ export default function Apply() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="relative z-10 animate-in fade-in duration-500">
+              <div className="absolute -left-[10000px]" aria-hidden="true">
+                <label htmlFor="website">웹사이트</label>
+                <input
+                  id="website"
+                  type="text"
+                  name="website"
+                  value={formData.website}
+                  onChange={handleChange}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
               {/* Type Selection */}
               <div className="grid grid-cols-2 gap-4 mb-10 border-b border-slate-200 pb-10">
                 <button
@@ -244,5 +243,4 @@ export default function Apply() {
     </div>
   );
 }
-
 

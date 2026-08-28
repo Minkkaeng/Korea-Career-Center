@@ -1,0 +1,29 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "hankukjinrocareercenter",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-08-28",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "hankukjinrocareercenter"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "CONTACT_EMAIL",
+      "destination_address": "sangoabaram@gmail.com",
+      "allowed_sender_addresses": ["contact@hankukjinrocareercenter.com"]
+    }
+  ],
+  "vars": {
+    "ANTHROPIC_MODEL": "claude-haiku-4-5",
+    "CONTACT_EMAIL_TO": "sangoabaram@gmail.com",
+    "CONTACT_EMAIL_FROM": "contact@hankukjinrocareercenter.com"
+  }
+}

@@ -3,6 +3,9 @@
 /out
 /.env*
 !.env.example
+/.open-next
+/.wrangler
+/.npm-cache
 npm-debug.log*
 *.log
 *.tsbuildinfo

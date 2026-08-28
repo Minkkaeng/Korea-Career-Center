@@ -1,4 +1,8 @@
-import { MapPin, Phone, Mail, Clock, Navigation, Subtitles } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Subtitles } from 'lucide-react';
+import KakaoMap from '../components/KakaoMap';
+
+const CENTER_ADDRESS = '경기도 성남시 수정구 성남대로 1275-1, 5층 A1013호';
+const CENTER_ADDRESS_DETAIL = '태평동, 익정빌딩';
 
 export default function Contact() {
   return (
@@ -21,6 +25,7 @@ export default function Contact() {
                   <div>
                     <h3 className="text-sm font-bold text-slate-500 mb-1 tracking-wide">대표 번호</h3>
                     <p className="text-2xl font-black text-slate-900">02-1234-5678</p>
+                    <p className="mt-1 text-xs font-bold text-amber-600">대표번호 확정 전 예시값</p>
                     <p className="text-sm text-slate-500 mt-2 font-medium">상담가능: 평일 09:00 - 18:00</p>
                   </div>
                 </div>
@@ -31,7 +36,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="text-sm font-bold text-slate-500 mb-1 tracking-wide">이메일 문의</h3>
-                    <p className="text-lg font-bold text-slate-900">help@hankukcareer.com</p>
+                    <a className="text-lg font-bold text-slate-900 hover:text-[#1e3a8a]" href="mailto:sangoabaram@gmail.com">sangoabaram@gmail.com</a>
                   </div>
                 </div>
 
@@ -53,36 +58,7 @@ export default function Contact() {
           <div className="lg:col-span-3 flex flex-col gap-6">
             {/* Map Area */}
             <div className="bg-white rounded-lg border border-slate-200 p-2 h-[400px] lg:h-[450px] relative overflow-hidden shadow-sm">
-              <div className="absolute inset-2 rounded bg-slate-100 overflow-hidden border border-slate-200">
-                {/* Grid lines */}
-                <div className="absolute inset-0 opacity-40" style={{ backgroundImage: 'linear-gradient(#cbd5e1 1px, transparent 1px), linear-gradient(90deg, #cbd5e1 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
-                {/* Fake Roads */}
-                <div className="absolute top-1/2 w-full h-12 bg-white -rotate-6 transform -translate-y-1/2 flex items-center justify-center border-y border-slate-200">
-                  <div className="w-full border-t-2 border-dashed border-slate-300"></div>
-                </div>
-                <div className="absolute left-1/3 h-full w-12 bg-white rotate-12 flex justify-center border-x border-slate-200">
-                  <div className="h-full border-l-2 border-dashed border-slate-300"></div>
-                </div>
-                
-                {/* Marker Container */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-10">
-                  <div className="bg-slate-900 px-4 py-2 rounded shadow-md mb-2 flex items-center gap-2 whitespace-nowrap">
-                    <div className="w-2 h-2 rounded-full bg-[#10b981] animate-pulse"></div>
-                    <span className="font-bold text-white text-sm">한국진로커리어센터</span>
-                  </div>
-                  <div className="w-10 h-10 bg-[#1e3a8a] rounded-full flex items-center justify-center text-white shadow-lg">
-                    <MapPin className="w-5 h-5" fill="currentColor" />
-                  </div>
-                </div>
-              </div>
-
-              {/* Map Overlay Button */}
-              <div className="absolute bottom-6 right-6 z-20 flex gap-2">
-                <button className="bg-white px-5 py-3 rounded border border-slate-200 text-slate-800 font-bold text-[14px] shadow-sm hover:bg-slate-50 flex items-center gap-2 transition-colors">
-                  <Navigation className="w-4 h-4 text-[#1e3a8a]" />
-                  카카오맵 길찾기
-                </button>
-              </div>
+              <KakaoMap address={CENTER_ADDRESS} placeName="한국진로커리어센터" />
             </div>
 
             {/* Address Details */}
@@ -91,16 +67,16 @@ export default function Contact() {
                 <h3 className="text-[12px] font-bold text-slate-500 mb-2 tracking-widest uppercase">센터 주소</h3>
                 <p className="text-lg font-bold text-slate-900 flex items-center gap-2">
                   <MapPin className="w-5 h-5 text-[#1e3a8a]" />
-                  서울특별시 테헤란로 123, 커리어빌딩 4층
+                  {CENTER_ADDRESS}
                 </p>
                 <p className="text-sm font-medium text-slate-600 mt-3 sm:ml-7 bg-slate-50 border border-slate-200 inline-block px-3 py-1.5 rounded">
-                  <Subtitles className="w-4 h-4 inline-block mr-1 text-slate-400" /> 지하철 2호선 역삼역 3번 출구 도보 5분
+                  <Subtitles className="w-4 h-4 inline-block mr-1 text-slate-400" /> {CENTER_ADDRESS_DETAIL}
                 </p>
               </div>
               
               <button 
                 onClick={() => {
-                  navigator.clipboard.writeText("서울특별시 테헤란로 123, 커리어빌딩 4층");
+                  navigator.clipboard.writeText(`${CENTER_ADDRESS} (${CENTER_ADDRESS_DETAIL})`);
                   alert("주소가 복사되었습니다.");
                 }}
                 className="w-full sm:w-auto px-6 py-3 bg-white border border-slate-300 hover:border-[#1e3a8a] text-slate-700 hover:text-[#1e3a8a] font-bold rounded transition-colors whitespace-nowrap shadow-sm"
@@ -114,5 +90,4 @@ export default function Contact() {
     </div>
   );
 }
-
 

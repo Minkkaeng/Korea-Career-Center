@@ -7,6 +7,7 @@ export default function ConsultationWidget() {
     { role: 'ai', text: '안녕하세요! 한국진로커리어센터 AI 챗봇입니다. 궁금하신 점을 물어보시거나 아래 상담 채널을 이용해 주세요.' }
   ]);
   const [inputValue, setInputValue] = useState('');
+  const [isSending, setIsSending] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -15,21 +16,34 @@ export default function ConsultationWidget() {
     }
   }, [messages, isOpen]);
 
-  const handleSendMessage = (e: React.FormEvent) => {
+  const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!inputValue.trim()) return;
+    const message = inputValue.trim();
+    if (!message || isSending) return;
 
-    // Add user message
-    setMessages(prev => [...prev, { role: 'user', text: inputValue }]);
+    setMessages(prev => [...prev, { role: 'user', text: message }]);
     setInputValue('');
+    setIsSending(true);
 
-    // Simulate AI response
-    setTimeout(() => {
-      setMessages(prev => [...prev, { 
-        role: 'ai', 
-        text: '상담원 연결이 필요하신 경우 아래 카카오톡 또는 네이버 톡톡 버튼을 클릭해 주세요. API 연동을 통해 곧 더 똑똑한 AI로 찾아뵙겠습니다!' 
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ message }),
+      });
+      const result = await response.json().catch(() => ({})) as { answer?: string; error?: string };
+      setMessages(prev => [...prev, {
+        role: 'ai',
+        text: response.ok && result.answer ? result.answer : (result.error || '현재 답변을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.'),
       }]);
-    }, 1000);
+    } catch {
+      setMessages(prev => [...prev, {
+        role: 'ai',
+        text: '챗봇 연결 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.',
+      }]);
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -58,15 +72,15 @@ export default function ConsultationWidget() {
 
           {/* Quick Actions (SNS) */}
           <div className="bg-slate-50 p-3 grid grid-cols-3 gap-2 border-b border-slate-100 shrink-0">
-            <a href="#" className="flex flex-col items-center justify-center gap-1 p-2 bg-[#FEE500] hover:bg-[#FEE500]/90 text-[#000000] rounded-xl transition-colors font-medium text-[11px]">
+            <span aria-disabled="true" className="flex cursor-not-allowed flex-col items-center justify-center gap-1 rounded-xl bg-[#FEE500] p-2 text-[11px] font-medium text-[#000000] opacity-70">
               <MessageSquare className="w-4 h-4" />
-              카카오톡
-            </a>
-            <a href="#" className="flex flex-col items-center justify-center gap-1 p-2 bg-[#03C75A] hover:bg-[#03C75A]/90 text-white rounded-xl transition-colors font-medium text-[11px]">
+              카카오톡 준비 중
+            </span>
+            <span aria-disabled="true" className="flex cursor-not-allowed flex-col items-center justify-center gap-1 rounded-xl bg-[#03C75A] p-2 text-[11px] font-medium text-white opacity-70">
               <MessageSquare className="w-4 h-4" />
-              네이버 톡톡
-            </a>
-            <a href="mailto:contact@hankukjinrocareercenter.com" className="flex flex-col items-center justify-center gap-1 p-2 bg-slate-800 hover:bg-slate-700 text-white rounded-xl transition-colors font-medium text-[11px]">
+              네이버 톡톡 준비 중
+            </span>
+            <a href="mailto:sangoabaram@gmail.com" className="flex flex-col items-center justify-center gap-1 p-2 bg-slate-800 hover:bg-slate-700 text-white rounded-xl transition-colors font-medium text-[11px]">
               <Mail className="w-4 h-4" />
               이메일 문의
             </a>
@@ -99,10 +113,10 @@ export default function ConsultationWidget() {
             />
             <button 
               type="submit"
-              disabled={!inputValue.trim()}
+              disabled={!inputValue.trim() || isSending}
               className="w-10 h-10 bg-[#0f2942] disabled:bg-slate-300 text-white rounded-xl flex items-center justify-center transition-colors"
             >
-              <Send className="w-4 h-4 ml-0.5" />
+              <Send className={`w-4 h-4 ml-0.5 ${isSending ? 'animate-pulse' : ''}`} />
             </button>
           </form>
         </div>
@@ -122,5 +136,3 @@ export default function ConsultationWidget() {
     </div>
   );
 }
-
-
