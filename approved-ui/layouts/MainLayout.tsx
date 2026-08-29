@@ -51,7 +51,7 @@ export default function MainLayout() {
                 <img src={logoUrl} alt="한국진로커리어센터 로고" className="h-12 md:h-16 w-auto object-contain" />
               </Link>
               <p className="text-sm md:text-base leading-relaxed text-slate-500 break-keep">
-                개인의 잠재력을 발견하고, 미래를 향한 최적의 커리어 패스를 설계합니다.<br className="hidden 2xl:block" />
+                개인의 잠재력을 발견하고, 미래를 향한 최적의 커리어 패스를 설계합니다.<br />
                 AI 기반 맞춤형 진단과 전문가의 깊이 있는 컨설팅으로 성공적인 내일을 함께합니다.
               </p>
             </div>
