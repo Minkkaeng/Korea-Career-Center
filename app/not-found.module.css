@@ -1,0 +1,13 @@
+.notFound {
+  padding: 8rem 1rem;
+  text-align: center;
+}
+
+.notFound p {
+  color: var(--color-muted);
+}
+
+.notFound a {
+  color: var(--color-primary);
+  font-weight: 800;
+}
