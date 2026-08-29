@@ -37,6 +37,9 @@ export default function MainLayout() {
                   <div className="h-12 md:h-[68px] flex items-center justify-center shrink-0">
                     <img src={`/images/partners/polytech.png`} alt="한국폴리텍대학" className="h-10 md:h-14 w-auto object-contain" />
                   </div>
+                  <div className="h-12 md:h-[68px] flex items-center justify-center shrink-0">
+                    <img src={`/images/partners/samsungaxi.png`} alt="SAMSUNG AXI" className="h-7 md:h-10 w-auto object-contain" />
+                  </div>
                 </div>
               ))}
             </div>
