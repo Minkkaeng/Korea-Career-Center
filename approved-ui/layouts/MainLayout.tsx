@@ -60,7 +60,7 @@ export default function MainLayout() {
               <h3 className="text-slate-900 font-bold mb-3 text-sm">주요 서비스</h3>
               <ul className="space-y-2 text-sm font-medium">
                 <li><Link to="/programs/ai-career-counseling" className="hover:text-blue-600 transition-colors">AI 진단 및 상담</Link></li>
-                <li><Link to="/programs/youth-career-empowerment" className="hover:text-blue-600 transition-colors">청년 취업역량강화</Link></li>
+                <li><Link to="/programs/youth-career-empowerment" className="hover:text-blue-600 transition-colors">청년취업 역량 강화</Link></li>
                 <li><Link to="/programs/corporate-recruitment-consulting" className="hover:text-blue-600 transition-colors">기업 채용 컨설팅</Link></li>
               </ul>
             </div>
