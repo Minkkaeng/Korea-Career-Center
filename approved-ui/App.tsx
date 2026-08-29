@@ -17,10 +17,39 @@ import JobInfo from './pages/JobInfo';
 import ConsultationWidget from './components/ConsultationWidget';
 
 import ScrollToTop from './components/ScrollToTop';
+import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+
+const titles: Record<string, string> = {
+  '/': '한국진로커리어센터',
+  '/about': '센터 안내 | 한국진로커리어센터',
+  '/organization': '조직도 | 한국진로커리어센터',
+  '/programs/youth': '청년취업 역량 강화 | 한국진로커리어센터',
+  '/programs/youth-career-empowerment': '청년취업 역량 강화 | 한국진로커리어센터',
+  '/programs/ai': 'AI 진단 및 상담 | 한국진로커리어센터',
+  '/programs/ai-career-counseling': 'AI 진단 및 상담 | 한국진로커리어센터',
+  '/programs/corporate': '기업 채용 컨설팅 | 한국진로커리어센터',
+  '/programs/corporate-recruitment-consulting': '기업 채용 컨설팅 | 한국진로커리어센터',
+  '/programs/special': '특강·위탁교육 | 한국진로커리어센터',
+  '/partners': '협력기관 | 한국진로커리어센터',
+  '/apply': '상담신청 | 한국진로커리어센터',
+  '/notices': '공지·소식 | 한국진로커리어센터',
+  '/contact': '오시는 길 | 한국진로커리어센터',
+  '/job-info': '취업정보 | 한국진로커리어센터',
+};
+
+function TitleUpdater() {
+  const location = useLocation();
+  useEffect(() => {
+    document.title = titles[location.pathname] || '한국진로커리어센터';
+  }, [location.pathname]);
+  return null;
+}
 
 function App() {
   return (
     <ReactLenis root>
+      <TitleUpdater />
       <ScrollToTop />
       <Routes>
         <Route element={<MainLayout />}>
