@@ -17,13 +17,16 @@ export const metadata: Metadata = {
     locale: "ko_KR",
     type: "website",
   },
+  other: {
+    google: "notranslate", // 구글 자동번역 방지 메타 태그
+  },
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" translate="no">
       <body>{children}</body>
     </html>
   );
