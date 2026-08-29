@@ -1,6 +1,110 @@
 import { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, Bot, Mail, MessageSquare } from 'lucide-react';
 
+function RobotVideoAvatar({ className = "w-full h-full" }: { className?: string }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [useVideo, setUseVideo] = useState(true);
+
+  const videoSrc = `/images/chatbot/chatbot.mp4`;
+
+  const frameUrls = [1, 2, 3, 4, 5, 6].map(
+    num => `/images/chatbot/frame${num}.jpg`
+  );
+
+  useEffect(() => {
+    if (useVideo) return; // Video mode active
+
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let animationFrameId: number;
+    let imagesLoaded = 0;
+    const images: HTMLImageElement[] = [];
+
+    frameUrls.forEach((url, i) => {
+      const img = new Image();
+      img.src = url;
+      img.onload = () => {
+        imagesLoaded++;
+      };
+      images[i] = img;
+    });
+
+    let startTime = performance.now();
+
+    const render = (time: number) => {
+      const elapsed = (time - startTime) / 1000; // seconds
+      const cycleDuration = 5.0; // 5초 루프
+      const normTime = (elapsed % cycleDuration) / cycleDuration; // 0.0 ~ 1.0
+
+      const pos = normTime * 6; // 0.0 ~ 6.0
+      const idx1 = Math.floor(pos) % 6;
+      const idx2 = (idx1 + 1) % 6;
+      let alpha = pos - Math.floor(pos);
+
+      // Smooth cosine easing for video-like motion transition
+      alpha = 0.5 - Math.cos(alpha * Math.PI) / 2;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Render video background base
+      ctx.fillStyle = '#0f2942';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      if (imagesLoaded >= 2) {
+        const img1 = images[idx1];
+        const img2 = images[idx2];
+
+        if (img1 && img1.complete && img1.naturalWidth > 0) {
+          ctx.globalAlpha = 1.0;
+          ctx.drawImage(img1, 0, 0, canvas.width, canvas.height);
+        }
+
+        if (img2 && img2.complete && img2.naturalWidth > 0 && alpha > 0.01) {
+          ctx.globalAlpha = alpha;
+          ctx.drawImage(img2, 0, 0, canvas.width, canvas.height);
+        }
+      }
+
+      ctx.globalAlpha = 1.0;
+      animationFrameId = requestAnimationFrame(render);
+    };
+
+    animationFrameId = requestAnimationFrame(render);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [useVideo]);
+
+  return (
+    <div className={`relative overflow-hidden bg-slate-900 ${className}`}>
+      {useVideo ? (
+        <video
+          ref={videoRef}
+          src={videoSrc}
+          autoPlay
+          loop
+          muted
+          playsInline
+          onError={() => setUseVideo(false)}
+          className="w-full h-full object-cover"
+        />
+      ) : (
+        <canvas
+          ref={canvasRef}
+          width={200}
+          height={200}
+          className="w-full h-full object-cover"
+        />
+      )}
+    </div>
+  );
+}
+
 export default function ConsultationWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<{role: 'ai' | 'user', text: string}[]>([
@@ -54,8 +158,8 @@ export default function ConsultationWidget() {
           {/* Header */}
           <div className="bg-gradient-to-r from-[#0f2942] to-[#1a4b77] p-4 flex justify-between items-center text-white shrink-0">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
-                <Bot className="w-6 h-6 text-[#7de2d1]" />
+              <div className="w-11 h-11 rounded-full overflow-hidden border-2 border-white/30 shrink-0 bg-slate-900 shadow-inner relative">
+                <RobotVideoAvatar className="w-full h-full" />
               </div>
               <div>
                 <h3 className="font-bold text-[15px]">AI 커리어 챗봇</h3>
@@ -126,11 +230,11 @@ export default function ConsultationWidget() {
       {!isOpen && (
         <button 
           onClick={() => setIsOpen(true)}
-          className="w-16 h-16 bg-gradient-to-tr from-[#0f2942] to-[#1a4b77] text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-105 transition-transform duration-300 group border-2 border-white/20"
+          className="relative w-20 h-20 rounded-full border-4 border-[#1e3a8a] shadow-none overflow-hidden bg-white flex items-center justify-center cursor-pointer hover:scale-105 transition-transform duration-300"
         >
-          <MessageCircle className="w-7 h-7 group-hover:-rotate-12 transition-transform" />
-          {/* Notification Dot */}
-          <span className="absolute top-0 right-0 w-4 h-4 bg-red-500 border-2 border-white rounded-full"></span>
+          <div className="w-full h-full rounded-full overflow-hidden bg-slate-100 flex items-center justify-center relative">
+            <RobotVideoAvatar className="w-full h-full" />
+          </div>
         </button>
       )}
     </div>
