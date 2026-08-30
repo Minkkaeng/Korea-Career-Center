@@ -60,7 +60,7 @@ export default function Notices() {
             <motion.div 
               key={notice.id} 
               variants={item}
-              className="group bg-white rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-[#1e3a8a] hover:ring-1 hover:ring-[#1e3a8a]/10 flex flex-col h-full border border-slate-200"
+              className="group bg-white rounded-2xl p-8 transition-all duration-300 hover:border-[#1e3a8a] hover:ring-1 hover:ring-[#1e3a8a]/10 flex flex-col h-full border border-slate-200"
             >
               <div className="flex items-start justify-between mb-6">
                 <div className="flex items-center gap-3">
