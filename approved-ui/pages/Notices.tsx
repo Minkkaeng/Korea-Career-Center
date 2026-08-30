@@ -21,7 +21,7 @@ export default function Notices() {
       date: '2026.06',
       content: '성남시일자리센터와의 협력을 통해 구직자들에게 보다 전문적이고 맞춤화된 취업 지원 서비스를 제공할 예정입니다.',
       url: 'http://snsite.kr/bbs/board.php?bo_table=news02&wr_id=13077',
-      images: [`/images/news/seongnam1.jpg`, `/images/news/seongnam2.jpg`, `/images/news/seongnam3.jpg`]
+      images: [`/images/news/seongnam1.png`, `/images/news/seongnam2.png`, `/images/news/seongnam3.jpg`]
     },
     {
       id: 1,
