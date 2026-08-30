@@ -46,6 +46,7 @@ export default function Header() {
       path: '/notices', 
       label: '공지·소식'
     },
+    { path: '/instructors', label: '강사매칭' },
     { path: '/contact', label: '오시는 길' },
   ];
 
