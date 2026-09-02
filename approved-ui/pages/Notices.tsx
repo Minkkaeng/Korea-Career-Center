@@ -86,7 +86,7 @@ export default function Notices() {
                   <div className={`grid gap-2 mb-4 ${notice.images.length === 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
                     {notice.images.map((img, idx) => (
                       <div key={idx} className="aspect-square rounded-lg overflow-hidden border border-slate-100">
-                        <img src={img} alt="뉴스 이미지" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                        <img src={img} alt="뉴스 이미지" loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                       </div>
                     ))}
                   </div>

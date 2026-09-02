@@ -147,7 +147,7 @@ export default function Organization() {
         {/* Left Business Card Profile Badge */}
         <div className="w-full lg:w-56 shrink-0 flex flex-col items-center text-center lg:border-r border-slate-100 lg:pr-6 pt-1">
           <div className="w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-slate-50 shadow-sm mb-3 bg-slate-100 shrink-0">
-            <img src={person.image} alt={person.name} className="w-full h-full object-cover" />
+            <img src={person.image} alt={person.name} loading="lazy" decoding="async" className="w-full h-full object-cover" />
           </div>
           <h4 className="text-xl md:text-2xl font-black text-slate-900 mb-1 tracking-tight">{person.name}</h4>
           <span className="inline-block px-3 py-1 bg-blue-50 text-blue-600 text-[11px] md:text-xs font-bold rounded-full border border-blue-100 mb-1.5 break-keep">
