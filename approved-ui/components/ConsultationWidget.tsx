@@ -6,7 +6,7 @@ function RobotVideoAvatar({ className = "w-full h-full" }: { className?: string 
   const videoRef = useRef<HTMLVideoElement>(null);
   const [useVideo, setUseVideo] = useState(true);
 
-  const videoSrc = `/images/chatbot/chatbot.mp4`;
+  const videoSrc = `/images/chatbot/video_1.mp4`;
 
   const frameUrls = [
     '/images/chatbot/frame1.png',
@@ -113,6 +113,9 @@ function RobotVideoAvatar({ className = "w-full h-full" }: { className?: string 
           loop
           muted
           playsInline
+          preload="metadata"
+          disablePictureInPicture
+          aria-hidden="true"
           onError={() => setUseVideo(false)}
           className="w-full h-full object-cover"
         />
