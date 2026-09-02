@@ -124,8 +124,8 @@ export default function Home() {
               <br />
               <span className="text-blue-600">보다 쉽게.</span>
             </h2>
-            <p className="text-xl md:text-3xl text-slate-500 font-medium leading-relaxed break-keep">
-              체계적인 데이터 분석과 직업 심리 적성검사로 나에게 맞는 과정을 간편하게 선택하고
+            <p className="text-lg md:text-3xl text-slate-500 font-medium leading-relaxed break-keep">
+              체계적인 데이터 분석과 직업 심리 적성검사로<br className="block md:hidden" /> 나에게 맞는 과정을 간편하게 선택하고
               <br className="hidden md:block" />
               AI 상담부터 취업 연계까지 손쉽게 신청할 수 있어요.
             </p>
@@ -146,9 +146,9 @@ export default function Home() {
             <div className="w-full lg:w-1/2">
               <motion.h2
                 variants={fadeInUp}
-                className="text-4xl md:text-5xl lg:text-6xl font-black leading-[1.15] tracking-tight break-keep text-slate-900 mb-8"
+                className="text-3xl md:text-5xl lg:text-6xl font-black leading-[1.15] tracking-tight break-keep text-slate-900 mb-8"
               >
-                AI기반 진로 진단과 맞춤형 상담으로
+                AI기반 진로 진단과<br className="block md:hidden" /> 맞춤형 상담으로
                 <br />
                 <span className="text-blue-600">
                   나에게 딱 맞는
@@ -238,8 +238,8 @@ export default function Home() {
                 className="bg-slate-800/30 p-10 md:p-12 rounded-[2rem] border border-slate-700/50 hover:bg-slate-800 transition-colors duration-500"
               >
                 <span className="text-5xl md:text-6xl font-black text-slate-700 mb-8 block">{item.id}</span>
-                <h4 className="text-2xl md:text-3xl font-bold mb-4">{item.title}</h4>
-                <p className="text-lg text-slate-400 leading-relaxed break-keep">{item.desc}</p>
+                <h4 className="text-xl md:text-3xl font-bold mb-4 break-keep leading-snug">{item.title}</h4>
+                <p className="text-base md:text-lg text-slate-400 leading-relaxed break-keep">{item.desc}</p>
               </motion.div>
             ))}
           </motion.div>
