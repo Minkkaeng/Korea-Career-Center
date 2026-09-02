@@ -42,7 +42,7 @@ function RobotVideoAvatar({ className = "w-full h-full" }: { className?: string 
 
     const render = (time: number) => {
       const elapsed = (time - startTime) / 1000; // seconds
-      const cycleDuration = 5.0; // 5초 루프
+      const cycleDuration = 12.0; // 12초 여유로운 루프 (각 프레임 약 2초간 유지)
       const normTime = (elapsed % cycleDuration) / cycleDuration; // 0.0 ~ 1.0
 
       const pos = normTime * 6; // 0.0 ~ 6.0
@@ -59,18 +59,36 @@ function RobotVideoAvatar({ className = "w-full h-full" }: { className?: string 
       ctx.fillStyle = '#0f2942';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+      const drawAspectCover = (img: HTMLImageElement) => {
+        const imgAspect = img.naturalWidth / img.naturalHeight;
+        const canvasAspect = canvas.width / canvas.height;
+        let drawW = canvas.width;
+        let drawH = canvas.height;
+        let drawX = 0;
+        let drawY = 0;
+
+        if (imgAspect > canvasAspect) {
+          drawW = canvas.height * imgAspect;
+          drawX = (canvas.width - drawW) / 2;
+        } else {
+          drawH = canvas.width / imgAspect;
+          drawY = (canvas.height - drawH) / 2;
+        }
+        ctx.drawImage(img, drawX, drawY, drawW, drawH);
+      };
+
       if (imagesLoaded >= 2) {
         const img1 = images[idx1];
         const img2 = images[idx2];
 
         if (img1 && img1.complete && img1.naturalWidth > 0) {
           ctx.globalAlpha = 1.0;
-          ctx.drawImage(img1, 0, 0, canvas.width, canvas.height);
+          drawAspectCover(img1);
         }
 
         if (img2 && img2.complete && img2.naturalWidth > 0 && alpha > 0.01) {
           ctx.globalAlpha = alpha;
-          ctx.drawImage(img2, 0, 0, canvas.width, canvas.height);
+          drawAspectCover(img2);
         }
       }
 
