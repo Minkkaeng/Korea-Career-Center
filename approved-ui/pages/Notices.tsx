@@ -29,8 +29,9 @@ export default function Notices() {
       category: '언론보도',
       title: '한국폴리텍대학 로봇캠퍼스-한국진로커리어센터, 산학협력 MOU 체결',
       date: '2026.05',
-      content: '한국폴리텍대학 로봇캠퍼스와의 산학협력 MOU 체결을 통해 로봇 및 미래 산업 분야의 인재 양성에 앞장섭니다.',
-      url: 'https://www.newsnjob.com/news/articleView.html?idxno=33544'
+      content: '국내 유일의 로봇 특화 대학인 한국폴리텍대학 로봇캠퍼스와의 산학협력 MOU 체결을 통해 로봇 분야 맞춤형 인재 양성 및 취업 경쟁력 강화에 앞장섭니다.',
+      url: 'https://www.newsnjob.com/news/articleView.html?idxno=33544',
+      images: [`/images/news/polytech1.jpg`, `/images/news/polytech2.jpg`]
     }
   ];
 
@@ -82,7 +83,7 @@ export default function Notices() {
                 </h3>
                 
                 {notice.images && (
-                  <div className="grid grid-cols-3 gap-2 mb-4">
+                  <div className={`grid gap-2 mb-4 ${notice.images.length === 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
                     {notice.images.map((img, idx) => (
                       <div key={idx} className="aspect-square rounded-lg overflow-hidden border border-slate-100">
                         <img src={img} alt="뉴스 이미지" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
