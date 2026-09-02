@@ -230,7 +230,7 @@ export default function Home() {
             {[
               { id: "01", title: "AI 기초 활용", desc: "직무 효율을 높이는 생성형 AI 실무" },
               { id: "02", title: "비즈니스 매너", desc: "입사 전 반드시 알아야 할 에티켓" },
-              { id: "03", title: "입사지원서 및 포트폴리오 코칭", desc: "인사담당자 눈에 띄는 자소서 작성법" },
+              { id: "03", title: "입사지원서 및 포트폴리오 코칭", desc: "인사담당자 눈에 띄는 작성법" },
             ].map((item) => (
               <motion.div
                 key={item.id}
