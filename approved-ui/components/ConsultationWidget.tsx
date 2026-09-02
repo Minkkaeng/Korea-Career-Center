@@ -8,9 +8,14 @@ function RobotVideoAvatar({ className = "w-full h-full" }: { className?: string 
 
   const videoSrc = `/images/chatbot/chatbot.mp4`;
 
-  const frameUrls = [1, 2, 3, 4, 5, 6].map(
-    num => `/images/chatbot/frame${num}.jpg`
-  );
+  const frameUrls = [
+    '/images/chatbot/frame1.png',
+    '/images/chatbot/frame2.png',
+    '/images/chatbot/frame3.png',
+    '/images/chatbot/frame4.jpg',
+    '/images/chatbot/frame5.jpg',
+    '/images/chatbot/frame6.jpg',
+  ];
 
   useEffect(() => {
     if (useVideo) return; // Video mode active
