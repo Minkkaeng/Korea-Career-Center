@@ -125,8 +125,8 @@ export default function Home() {
               <span className="text-blue-600">보다 쉽게.</span>
             </h2>
             <p className="text-lg md:text-3xl text-slate-500 font-medium leading-relaxed break-keep">
-              체계적인 데이터 분석과 직업 심리 적성검사로<br className="block md:hidden" /> 나에게 맞는 과정을 간편하게 선택하고
-              <br className="hidden md:block" />
+              체계적인 데이터 분석과 직업 심리 적성검사로<br />
+              나에게 맞는 과정을 간편하게 선택하고,<br />
               AI 상담부터 취업 연계까지 손쉽게 신청할 수 있어요.
             </p>
           </motion.div>
