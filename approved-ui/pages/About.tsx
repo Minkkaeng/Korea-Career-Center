@@ -154,8 +154,7 @@ export default function About() {
               을 제시합니다.
             </h2>
             <p className="text-xl md:text-2xl text-slate-300 font-medium leading-relaxed break-keep">
-              구직자에게는 든든한 커리어 러닝메이트로,
-              <br className="hidden md:block" />
+              구직자에게는 든든한 커리어 러닝메이트로,<br />
               기관 및 기업에는 최적의 고용 성과를 창출하는 신뢰의 파트너로 함께 하겠습니다.
             </p>
             <div className="pt-8">

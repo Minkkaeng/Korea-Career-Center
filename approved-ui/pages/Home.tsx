@@ -125,7 +125,7 @@ export default function Home() {
               <span className="text-blue-600">보다 쉽게.</span>
             </h2>
             <p className="text-xl md:text-3xl text-slate-500 font-medium leading-relaxed break-keep">
-              몇 번의 클릭만으로 나에게 맞는 과정을 간편하게 선택하고
+              체계적인 데이터 분석과 직업 심리 적성검사로 나에게 맞는 과정을 간편하게 선택하고
               <br className="hidden md:block" />
               AI 상담부터 취업 연계까지 손쉽게 신청할 수 있어요.
             </p>
@@ -148,7 +148,7 @@ export default function Home() {
                 variants={fadeInUp}
                 className="text-4xl md:text-5xl lg:text-6xl font-black leading-[1.15] tracking-tight break-keep text-slate-900 mb-8"
               >
-                한 번의 진단으로
+                AI기반 진로 진단과 맞춤형 상담으로
                 <br />
                 <span className="text-blue-600">
                   나에게 딱 맞는
@@ -230,7 +230,7 @@ export default function Home() {
             {[
               { id: "01", title: "AI 기초 활용", desc: "직무 효율을 높이는 생성형 AI 실무" },
               { id: "02", title: "비즈니스 매너", desc: "입사 전 반드시 알아야 할 에티켓" },
-              { id: "03", title: "이력서 코칭", desc: "인사담당자 눈에 띄는 자소서 작성법" },
+              { id: "03", title: "입사지원서 및 포트폴리오 코칭", desc: "인사담당자 눈에 띄는 자소서 작성법" },
             ].map((item) => (
               <motion.div
                 key={item.id}
