@@ -215,8 +215,9 @@ export default function Home() {
               <span className="text-cyan-400">바로 시작하세요.</span>
             </h2>
             <p className="text-xl md:text-3xl text-slate-400 font-medium mb-24 leading-relaxed break-keep">
-              선착순 마감 없는 상시 교육 과정으로
-              <br className="hidden md:block" />내 커리어 성장을 지금 당장 시작하세요.
+              선착순 마감 없는 상시 교육 과정으로<br />
+              내 커리어 성장을<br />
+              지금 당장 시작하세요.
             </p>
           </motion.div>
 
