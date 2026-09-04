@@ -31,7 +31,7 @@ export default function Notices() {
       date: '2026.05',
       content: '국내 유일의 로봇 특화 대학인 한국폴리텍대학 로봇캠퍼스와의 산학협력 MOU 체결을 통해 로봇 분야 맞춤형 인재 양성 및 취업 경쟁력 강화에 앞장섭니다.',
       url: 'https://www.newsnjob.com/news/articleView.html?idxno=33544',
-      images: [`/images/news/polytech1.jpg`, `/images/news/polytech2.jpg`]
+      images: ['/images/news/polytech1.jpg', '/images/news/polytech2.jpg']
     }
   ];
 

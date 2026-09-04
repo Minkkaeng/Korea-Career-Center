@@ -1,133 +1,44 @@
-import { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Bot, Mail, MessageSquare } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { X, Send, Mail, MessageSquare } from 'lucide-react';
 
-function RobotVideoAvatar({ className = "w-full h-full" }: { className?: string }) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [useVideo, setUseVideo] = useState(true);
-
-  const videoSrc = `/images/chatbot/video_1.mp4`;
-
-  const frameUrls = [
-    '/images/chatbot/frame1.png',
-    '/images/chatbot/frame2.png',
-    '/images/chatbot/frame3.png',
-    '/images/chatbot/frame4.jpg',
-    '/images/chatbot/frame5.jpg',
-    '/images/chatbot/frame6.jpg',
-  ];
+function RobotVideoAvatar({ className = 'h-full w-full' }: { className?: string }) {
+  const [motionAllowed, setMotionAllowed] = useState(false);
+  const [videoAvailable, setVideoAvailable] = useState(true);
 
   useEffect(() => {
-    if (useVideo) return; // Video mode active
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const updateMotionPreference = () => setMotionAllowed(!reducedMotion.matches);
 
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    updateMotionPreference();
+    reducedMotion.addEventListener('change', updateMotionPreference);
 
-    let animationFrameId: number;
-    let imagesLoaded = 0;
-    const images: HTMLImageElement[] = [];
-
-    frameUrls.forEach((url, i) => {
-      const img = new Image();
-      img.src = url;
-      img.onload = () => {
-        imagesLoaded++;
-      };
-      images[i] = img;
-    });
-
-    let startTime = performance.now();
-
-    const render = (time: number) => {
-      const elapsed = (time - startTime) / 1000; // seconds
-      const cycleDuration = 12.0; // 12초 여유로운 루프 (각 프레임 약 2초간 유지)
-      const normTime = (elapsed % cycleDuration) / cycleDuration; // 0.0 ~ 1.0
-
-      const pos = normTime * 6; // 0.0 ~ 6.0
-      const idx1 = Math.floor(pos) % 6;
-      const idx2 = (idx1 + 1) % 6;
-      let alpha = pos - Math.floor(pos);
-
-      // Smooth cosine easing for video-like motion transition
-      alpha = 0.5 - Math.cos(alpha * Math.PI) / 2;
-
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Render video background base
-      ctx.fillStyle = '#0f2942';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      const drawAspectCover = (img: HTMLImageElement) => {
-        const imgAspect = img.naturalWidth / img.naturalHeight;
-        const canvasAspect = canvas.width / canvas.height;
-        let drawW = canvas.width;
-        let drawH = canvas.height;
-        let drawX = 0;
-        let drawY = 0;
-
-        if (imgAspect > canvasAspect) {
-          drawW = canvas.height * imgAspect;
-          drawX = (canvas.width - drawW) / 2;
-        } else {
-          drawH = canvas.width / imgAspect;
-          drawY = (canvas.height - drawH) / 2;
-        }
-        ctx.drawImage(img, drawX, drawY, drawW, drawH);
-      };
-
-      if (imagesLoaded >= 2) {
-        const img1 = images[idx1];
-        const img2 = images[idx2];
-
-        if (img1 && img1.complete && img1.naturalWidth > 0) {
-          ctx.globalAlpha = 1.0;
-          drawAspectCover(img1);
-        }
-
-        if (img2 && img2.complete && img2.naturalWidth > 0 && alpha > 0.01) {
-          ctx.globalAlpha = alpha;
-          drawAspectCover(img2);
-        }
-      }
-
-      ctx.globalAlpha = 1.0;
-      animationFrameId = requestAnimationFrame(render);
-    };
-
-    animationFrameId = requestAnimationFrame(render);
-
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, [useVideo]);
+    return () => reducedMotion.removeEventListener('change', updateMotionPreference);
+  }, []);
 
   return (
-    <div className={`relative overflow-hidden bg-slate-900 ${className}`}>
-      {useVideo ? (
+    <span className={`relative block overflow-hidden bg-slate-900 ${className}`} aria-hidden="true">
+      {motionAllowed && videoAvailable ? (
         <video
-          ref={videoRef}
-          src={videoSrc}
           autoPlay
           loop
           muted
           playsInline
           preload="metadata"
           disablePictureInPicture
-          aria-hidden="true"
-          onError={() => setUseVideo(false)}
-          className="w-full h-full object-cover"
-        />
+          poster="/images/chatbot/frame1.png"
+          onError={() => setVideoAvailable(false)}
+          className="h-full w-full object-cover"
+        >
+          <source src="/images/chatbot/video_1.mp4" type="video/mp4" />
+        </video>
       ) : (
-        <canvas
-          ref={canvasRef}
-          width={200}
-          height={200}
-          className="w-full h-full object-cover"
+        <img
+          src="/images/chatbot/frame1.png"
+          alt=""
+          className="h-full w-full object-cover"
         />
       )}
-    </div>
+    </span>
   );
 }
 
@@ -139,7 +50,6 @@ export default function ConsultationWidget() {
   const [inputValue, setInputValue] = useState('');
   const [isSending, setIsSending] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -180,12 +90,12 @@ export default function ConsultationWidget() {
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
       {/* Widget Panel */}
       {isOpen && (
-        <div className="w-[360px] h-[550px] bg-white rounded-2xl shadow-2xl mb-4 border border-slate-200 overflow-hidden flex flex-col animate-in slide-in-from-bottom-5 duration-300">
+        <div className="h-[550px] w-[calc(100vw-56px)] max-w-[360px] bg-white rounded-2xl shadow-2xl mb-4 border border-slate-200 overflow-hidden flex flex-col animate-in slide-in-from-bottom-5 duration-300">
           {/* Header */}
           <div className="bg-gradient-to-r from-[#0f2942] to-[#1a4b77] p-4 flex justify-between items-center text-white shrink-0">
             <div className="flex items-center gap-3">
-              <div className="w-11 h-11 rounded-full overflow-hidden border-2 border-white/30 shrink-0 bg-slate-900 shadow-inner relative">
-                <RobotVideoAvatar className="w-full h-full" />
+              <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full border-2 border-white/30 bg-slate-900 shadow-inner" aria-hidden="true">
+                <RobotVideoAvatar />
               </div>
               <div>
                 <h3 className="font-bold text-[15px]">AI 커리어 챗봇</h3>
@@ -195,7 +105,7 @@ export default function ConsultationWidget() {
                 </span>
               </div>
             </div>
-            <button onClick={() => setIsOpen(false)} className="p-1 hover:bg-white/10 rounded-full transition-colors">
+            <button onClick={() => setIsOpen(false)} aria-label="AI 커리어 챗봇 닫기" className="p-1 hover:bg-white/10 rounded-full transition-colors">
               <X className="w-5 h-5" />
             </button>
           </div>
@@ -256,11 +166,10 @@ export default function ConsultationWidget() {
       {!isOpen && (
         <button 
           onClick={() => setIsOpen(true)}
-          className="relative w-20 h-20 rounded-full border-4 border-[#1e3a8a] shadow-none overflow-hidden bg-white flex items-center justify-center cursor-pointer hover:scale-105 transition-transform duration-300"
+          aria-label="AI 커리어 챗봇 열기"
+          className="relative flex h-20 w-20 cursor-pointer items-center justify-center overflow-hidden rounded-full border-4 border-[#1e3a8a] bg-white shadow-none"
         >
-          <div className="w-full h-full rounded-full overflow-hidden bg-slate-100 flex items-center justify-center relative">
-            <RobotVideoAvatar className="w-full h-full" />
-          </div>
+          <RobotVideoAvatar className="h-full w-full rounded-full" />
         </button>
       )}
     </div>

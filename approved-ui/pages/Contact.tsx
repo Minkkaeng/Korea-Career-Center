@@ -24,8 +24,9 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="text-sm font-bold text-slate-500 mb-1 tracking-wide">대표 번호</h3>
-                    <p className="text-2xl font-black text-slate-900">02-1234-5678</p>
-                    <p className="mt-1 text-xs font-bold text-amber-600">대표번호 확정 전 예시값</p>
+                    <a className="text-2xl font-black text-slate-900 hover:text-[#1e3a8a]" href="tel:010-8489-3944">
+                      010-8489-3944
+                    </a>
                     <p className="text-sm text-slate-500 mt-2 font-medium">상담가능: 평일 09:00 - 18:00</p>
                   </div>
                 </div>
@@ -90,4 +91,3 @@ export default function Contact() {
     </div>
   );
 }
-
