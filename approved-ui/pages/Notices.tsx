@@ -1,5 +1,6 @@
-import { Calendar, Pin, ExternalLink } from 'lucide-react';
+import { Calendar, Pin, ExternalLink, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
 export default function Notices() {
   const notices = [
@@ -58,143 +59,174 @@ export default function Notices() {
     show: { opacity: 1, y: 0 }
   };
 
+  const [currentPoster, setCurrentPoster] = useState(0);
+  const posts = notices.filter(n => n.category === '소식');
+  const news = notices.filter(n => n.category === '언론보도');
+
+  useEffect(() => {
+    if(posts.length === 0) return;
+    const timer = setInterval(() => {
+      setCurrentPoster((prev) => (prev + 1) % posts.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [posts.length]);
+
   return (
     <div className="w-full bg-slate-50/50 font-sans min-h-screen pb-24">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 pt-4">
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
+      {/* Top Banner Area */}
+      <div className="w-full bg-[#0f2942] text-white py-12 md:py-16 mb-12 relative overflow-hidden">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 relative z-10">
+          <motion.div variants={item} initial="hidden" animate="show">
+            <span className="inline-block px-3 py-1 bg-blue-500/20 text-blue-300 font-bold text-xs rounded-full mb-4 border border-blue-400/30">
+              이달의 주요 행사
+            </span>
+            <h1 className="text-3xl md:text-5xl font-black mb-4 tracking-tight break-keep">
+              2026 청년 글로벌 채용 박람회
+            </h1>
+            <p className="text-slate-300 text-lg md:text-xl font-medium mb-8 max-w-2xl break-keep">
+              국내외 우수 기업들과 함께하는 글로벌 커리어 패스. 지금 바로 사전 신청하고 성공적인 커리어의 첫 걸음을 내딛으세요.
+            </p>
+            <button className="px-6 py-3 bg-white text-[#0f2942] font-bold rounded-xl hover:bg-slate-100 transition-colors flex items-center gap-2">
+              자세히 보기 <ArrowRight className="w-5 h-5" />
+            </button>
+          </motion.div>
+        </div>
+        <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 100% 50%, white 0%, transparent 50%)' }}></div>
+      </div>
+
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
           
-          {/* Left Column: 소식 (Posts) */}
-          <div className="lg:col-span-7 xl:col-span-8">
-            <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
-              <span className="w-1.5 h-6 bg-[#1e3a8a] rounded-full"></span>
-              센터 소식
-            </h2>
-            <motion.div 
-              variants={container}
-              initial="hidden"
-              animate="show"
-              className="grid sm:grid-cols-2 gap-6"
-            >
-              {notices.filter(n => n.category === '소식').map((notice) => (
-                <motion.div 
-                  key={notice.id} 
-                  variants={item}
-                  className="group bg-white rounded-2xl p-6 md:p-8 transition-all duration-300 hover:border-[#1e3a8a] hover:ring-1 hover:ring-[#1e3a8a]/10 flex flex-col h-full border border-slate-200"
-                >
-                  <div className="flex items-start justify-between mb-6">
-                    <div className="flex items-center gap-3">
-                      {notice.isPinned && (
-                        <span className="flex items-center gap-1.5 bg-[#1e3a8a] text-white text-xs font-bold px-2.5 py-1 rounded-md">
-                          <Pin className="w-3 h-3" />
-                          주요소식
-                        </span>
-                      )}
-                      <span className={`text-xs font-bold px-2.5 py-1 rounded-md ${notice.isPinned ? 'bg-blue-50 text-[#1e3a8a]' : 'bg-slate-100 text-slate-600'}`}>
-                        {notice.category}
-                      </span>
-                    </div>
-                  </div>
+          {/* LEFT: 대표 공모전/박람회 포스터 (단독) (approx 45%) */}
+          <div className="w-full lg:w-[45%] shrink-0 flex flex-col">
+            {posts.length > 0 && (
+              <motion.div 
+                key={posts[currentPoster].id}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-200 flex flex-col h-full"
+              >
+                <div className="flex items-center gap-2 mb-6">
+                  {posts[currentPoster].isPinned && (
+                    <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-sm">
+                      D-5
+                    </span>
+                  )}
+                  <span className="bg-blue-50 text-blue-600 border border-blue-200 px-3 py-1 rounded-full text-sm font-bold">
+                    접수중
+                  </span>
+                </div>
 
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:text-[#1e3a8a] transition-colors leading-snug break-keep">
-                      {notice.title}
-                    </h3>
-                    
-                    {notice.images && (
-                      <div className={`grid gap-2 mb-4 ${notice.images.length === 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
-                        {notice.images.map((img, idx) => (
-                          <div key={idx} className="aspect-square rounded-lg overflow-hidden border border-slate-100">
-                            <img src={img} alt="뉴스 이미지" loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                          </div>
-                        ))}
-                      </div>
-                    )}
-
-                    <p className="text-slate-600 leading-relaxed text-[15px] break-keep line-clamp-3">
-                      {notice.content}
-                    </p>
-                  </div>
-
-                  <div className="flex items-center justify-between text-slate-400 text-sm border-t border-slate-100/80 pt-4 mt-6">
-                    <div className="flex items-center gap-1.5">
-                      <Calendar className="w-4 h-4" />
-                      <span>{notice.date}</span>
-                    </div>
-                    <a href={notice.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-[#1e3a8a] font-bold group-hover:gap-2 transition-all">
-                      상세보기
-                      <ExternalLink className="w-4 h-4" />
+                <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden mb-6 bg-slate-100 border border-slate-100 relative group">
+                  {posts[currentPoster].images && posts[currentPoster].images[0] ? (
+                    <img 
+                      src={posts[currentPoster].images[0]} 
+                      alt="포스터" 
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-slate-300">No Image</div>
+                  )}
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <a href={posts[currentPoster].url} className="bg-white text-slate-900 font-bold px-6 py-3 rounded-full flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-all">
+                      상세 요강 확인하기 <ArrowRight className="w-4 h-4" />
                     </a>
                   </div>
-                </motion.div>
-              ))}
-            </motion.div>
+                </div>
+
+                <div className="flex-1 flex flex-col justify-end">
+                  <h3 className="text-2xl font-black text-slate-900 mb-3 leading-snug break-keep">
+                    {posts[currentPoster].title}
+                  </h3>
+                  <div className="flex items-center gap-2 text-slate-600 mb-6 font-medium">
+                    <Calendar className="w-4 h-4" />
+                    <span>일정: {posts[currentPoster].date} | KCC 센터</span>
+                  </div>
+                  
+                  <div className="flex items-center justify-between border-t border-slate-100 pt-5">
+                    <a href={posts[currentPoster].url} className="text-blue-600 font-bold hover:text-blue-800 transition-colors flex items-center gap-1">
+                      사전 신청하기 <ArrowRight className="w-4 h-4" />
+                    </a>
+                    
+                    <div className="flex items-center gap-3">
+                      <button 
+                        onClick={() => setCurrentPoster(p => (p === 0 ? posts.length - 1 : p - 1))}
+                        className="p-1.5 text-slate-400 hover:text-slate-900 hover:bg-slate-100 rounded-full transition-colors"
+                      >
+                        <ChevronLeft className="w-5 h-5" />
+                      </button>
+                      <span className="text-sm font-bold text-slate-500 tracking-widest">
+                        <span className="text-slate-900">{currentPoster + 1}</span> / {posts.length}
+                      </span>
+                      <button 
+                        onClick={() => setCurrentPoster(p => (p + 1) % posts.length)}
+                        className="p-1.5 text-slate-400 hover:text-slate-900 hover:bg-slate-100 rounded-full transition-colors"
+                      >
+                        <ChevronRight className="w-5 h-5" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            )}
           </div>
 
-          {/* Right Column: 언론보도 (News Cards) */}
-          <div className="lg:col-span-5 xl:col-span-4">
-            <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
-              <span className="w-1.5 h-6 bg-[#1e3a8a] rounded-full"></span>
-              언론 보도
-            </h2>
-            <motion.div 
-              variants={container}
-              initial="hidden"
-              animate="show"
-              className="grid sm:grid-cols-2 lg:grid-cols-1 gap-6"
-            >
-              {notices.filter(n => n.category === '언론보도').map((notice) => (
-                <motion.div 
+          {/* RIGHT: 프레스 & 뉴스 (앨범 갤러리 그리드) (approx 55%) */}
+          <div className="w-full lg:w-[55%] flex flex-col">
+            <div className="flex items-end justify-between mb-6">
+              <div>
+                <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
+                  <span className="w-1.5 h-6 bg-[#1e3a8a] rounded-full"></span>
+                  최신 보도자료
+                </h2>
+              </div>
+              <a href="#" className="text-sm font-bold text-slate-500 hover:text-blue-600 transition-colors">전체보기 +</a>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-5">
+              {news.map((notice) => (
+                <motion.a 
+                  href={notice.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   key={notice.id} 
                   variants={item}
-                  className="group bg-white rounded-2xl p-6 transition-all duration-300 hover:border-[#1e3a8a] hover:ring-1 hover:ring-[#1e3a8a]/10 flex flex-col h-full border border-slate-200"
+                  className="group bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200 transition-all duration-300 hover:border-[#1e3a8a] hover:-translate-y-1 hover:shadow-lg flex flex-col h-full"
                 >
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center gap-3">
-                      {notice.isPinned && (
-                        <span className="flex items-center gap-1.5 bg-[#1e3a8a] text-white text-xs font-bold px-2.5 py-1 rounded-md">
-                          <Pin className="w-3 h-3" />
-                          주요보도
-                        </span>
-                      )}
-                      <span className={`text-xs font-bold px-2.5 py-1 rounded-md ${notice.isPinned ? 'bg-blue-50 text-[#1e3a8a]' : 'bg-slate-100 text-slate-600'}`}>
-                        {notice.category}
-                      </span>
+                  <div className="w-full aspect-video bg-slate-100 relative overflow-hidden">
+                    {notice.images && notice.images[0] ? (
+                      <img 
+                        src={notice.images[0]} 
+                        alt="썸네일" 
+                        loading="lazy" 
+                        decoding="async" 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-slate-300">No Image</div>
+                    )}
+                    <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-[11px] font-bold text-slate-700 shadow-sm">
+                      {notice.category}
                     </div>
                   </div>
 
-                  <div className="flex-1">
-                    <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-[#1e3a8a] transition-colors leading-snug break-keep">
+                  <div className="p-5 flex flex-col flex-1">
+                    <h3 className="text-base font-bold text-slate-900 mb-2 group-hover:text-[#1e3a8a] transition-colors leading-snug line-clamp-2 break-keep">
                       {notice.title}
                     </h3>
-                    
-                    {notice.images && (
-                      <div className={`grid gap-2 mb-4 ${notice.images.length === 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
-                        {notice.images.map((img, idx) => (
-                          <div key={idx} className="aspect-square rounded-lg overflow-hidden border border-slate-100">
-                            <img src={img} alt="뉴스 이미지" loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                          </div>
-                        ))}
-                      </div>
-                    )}
-
-                    <p className="text-slate-600 leading-relaxed text-sm break-keep line-clamp-3">
-                      {notice.content}
+                    <p className="text-slate-500 text-sm leading-relaxed line-clamp-2 break-keep flex-1">
+                      • {notice.content}
                     </p>
-                  </div>
-
-                  <div className="flex items-center justify-between text-slate-400 text-sm border-t border-slate-100/80 pt-4 mt-6">
-                    <div className="flex items-center gap-1.5">
-                      <Calendar className="w-4 h-4" />
+                    
+                    <div className="flex items-center text-[12px] text-slate-400 font-medium mt-4 pt-4 border-t border-slate-100">
+                      <span className="text-blue-600 font-bold">뉴스엔잡</span>
+                      <span className="mx-2">|</span>
                       <span>{notice.date}</span>
                     </div>
-                    <a href={notice.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-[#1e3a8a] font-bold group-hover:gap-2 transition-all">
-                      기사 원문보기
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
                   </div>
-                </motion.div>
+                </motion.a>
               ))}
-            </motion.div>
+            </div>
           </div>
 
         </div>
