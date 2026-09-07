@@ -124,11 +124,6 @@ export default function Notices() {
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-slate-300">No Image</div>
                   )}
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <a href={posts[currentPoster].url} className="bg-white text-slate-900 font-bold px-6 py-3 rounded-full flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-all">
-                      상세 요강 확인하기 <ArrowRight className="w-4 h-4" />
-                    </a>
-                  </div>
                 </div>
 
                 <div className="flex-1 flex flex-col justify-end">
