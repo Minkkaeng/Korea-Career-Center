@@ -48,11 +48,7 @@ export default function Header() {
     },
     { 
       path: '/instructors', 
-      label: '진로',
-      children: [
-        { path: '/mentoring', label: '멘토링' },
-        { path: '/instructors', label: '강사 매칭' }
-      ]
+      label: '강사 매칭'
     },
     { path: '/contact', label: '오시는 길' },
   ];
