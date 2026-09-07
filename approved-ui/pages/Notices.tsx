@@ -4,6 +4,16 @@ import { motion } from 'framer-motion';
 export default function Notices() {
   const notices = [
     {
+      id: 4,
+      isPinned: true,
+      category: '소식',
+      title: '2026년 채용박람회 성료',
+      date: '2026.09',
+      content: '2026 채용박람회에 참가하여 구직자들을 위한 맞춤형 진로 상담 및 취업 컨설팅을 성황리에 진행했습니다.',
+      url: '#',
+      images: ['/images/news/jobfair20260917.jpg']
+    },
+    {
       id: 3,
       isPinned: true,
       category: '언론보도',
