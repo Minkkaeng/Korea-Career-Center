@@ -109,12 +109,9 @@ export default function Notices() {
                 <div className="flex items-center gap-2 mb-6">
                   {posts[currentPoster].isPinned && (
                     <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-sm">
-                      D-5
+                      주요소식
                     </span>
                   )}
-                  <span className="bg-blue-50 text-blue-600 border border-blue-200 px-3 py-1 rounded-full text-sm font-bold">
-                    접수중
-                  </span>
                 </div>
 
                 <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden mb-6 bg-slate-100 border border-slate-100 relative group">
@@ -144,9 +141,7 @@ export default function Notices() {
                   </div>
                   
                   <div className="flex items-center justify-between border-t border-slate-100 pt-5">
-                    <a href={posts[currentPoster].url} className="text-blue-600 font-bold hover:text-blue-800 transition-colors flex items-center gap-1">
-                      사전 신청하기 <ArrowRight className="w-4 h-4" />
-                    </a>
+                    <div></div>
                     
                     <div className="flex items-center gap-3">
                       <button 
