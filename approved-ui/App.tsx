@@ -13,6 +13,7 @@ import Partners from './pages/Partners';
 import Apply from './pages/Apply';
 import Notices from './pages/Notices';
 import Instructors from './pages/Instructors';
+import Mentoring from './pages/Mentoring';
 import Contact from './pages/Contact';
 import JobInfo from './pages/JobInfo';
 import ConsultationWidget from './components/ConsultationWidget';
@@ -70,6 +71,7 @@ function App() {
           <Route path="/apply" element={<Apply />} />
           <Route path="/notices" element={<Notices />} />
           <Route path="/instructors" element={<Instructors />} />
+          <Route path="/mentoring" element={<Mentoring />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/job-info" element={<JobInfo />} />
         </Route>
