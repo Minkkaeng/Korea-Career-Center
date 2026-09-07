@@ -1,21 +1,11 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Instructors() {
   const [activeTab, setActiveTab] = useState<'진로 멘토링' | '강사 섭외'>('진로 멘토링');
 
   return (
-    <div className="min-h-screen bg-slate-50/50 pb-24">
-      {/* Header Section */}
-      <div className="bg-[#0f2942] text-white pt-32 pb-16 md:pb-24 mb-12">
-        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 text-center">
-          <h1 className="text-4xl md:text-5xl font-black mb-6 tracking-tight">강사 매칭</h1>
-          <p className="text-slate-300 text-lg max-w-2xl mx-auto break-keep">
-            최고의 전문가들과 함께 여러분의 진로를 설계하고 성공적인 교육을 만들어가세요.
-          </p>
-        </div>
-      </div>
-
+    <div className="min-h-screen bg-slate-50/50 pb-24 pt-32">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
         {/* Tabs */}
         <div className="flex justify-center mb-12">
