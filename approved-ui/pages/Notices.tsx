@@ -61,65 +61,143 @@ export default function Notices() {
   return (
     <div className="w-full bg-slate-50/50 font-sans min-h-screen pb-24">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 pt-4">
-        <motion.div 
-          variants={container}
-          initial="hidden"
-          animate="show"
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {notices.map((notice) => (
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
+          
+          {/* Left Column: 소식 (Posts) */}
+          <div className="lg:col-span-7 xl:col-span-8">
+            <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+              <span className="w-1.5 h-6 bg-[#1e3a8a] rounded-full"></span>
+              센터 소식
+            </h2>
             <motion.div 
-              key={notice.id} 
-              variants={item}
-              className="group bg-white rounded-2xl p-8 transition-all duration-300 hover:border-[#1e3a8a] hover:ring-1 hover:ring-[#1e3a8a]/10 flex flex-col h-full border border-slate-200"
+              variants={container}
+              initial="hidden"
+              animate="show"
+              className="grid sm:grid-cols-2 gap-6"
             >
-              <div className="flex items-start justify-between mb-6">
-                <div className="flex items-center gap-3">
-                  {notice.isPinned && (
-                    <span className="flex items-center gap-1.5 bg-[#1e3a8a] text-white text-xs font-bold px-2.5 py-1 rounded-md">
-                      <Pin className="w-3 h-3" />
-                      주요소식
-                    </span>
-                  )}
-                  <span className={`text-xs font-bold px-2.5 py-1 rounded-md ${notice.isPinned ? 'bg-blue-50 text-[#1e3a8a]' : 'bg-slate-100 text-slate-600'}`}>
-                    {notice.category}
-                  </span>
-                </div>
-              </div>
-
-              <div className="flex-1">
-                <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:text-[#1e3a8a] transition-colors leading-snug break-keep">
-                  {notice.title}
-                </h3>
-                
-                {notice.images && (
-                  <div className={`grid gap-2 mb-4 ${notice.images.length === 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
-                    {notice.images.map((img, idx) => (
-                      <div key={idx} className="aspect-square rounded-lg overflow-hidden border border-slate-100">
-                        <img src={img} alt="뉴스 이미지" loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                      </div>
-                    ))}
+              {notices.filter(n => n.category === '소식').map((notice) => (
+                <motion.div 
+                  key={notice.id} 
+                  variants={item}
+                  className="group bg-white rounded-2xl p-6 md:p-8 transition-all duration-300 hover:border-[#1e3a8a] hover:ring-1 hover:ring-[#1e3a8a]/10 flex flex-col h-full border border-slate-200"
+                >
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="flex items-center gap-3">
+                      {notice.isPinned && (
+                        <span className="flex items-center gap-1.5 bg-[#1e3a8a] text-white text-xs font-bold px-2.5 py-1 rounded-md">
+                          <Pin className="w-3 h-3" />
+                          주요소식
+                        </span>
+                      )}
+                      <span className={`text-xs font-bold px-2.5 py-1 rounded-md ${notice.isPinned ? 'bg-blue-50 text-[#1e3a8a]' : 'bg-slate-100 text-slate-600'}`}>
+                        {notice.category}
+                      </span>
+                    </div>
                   </div>
-                )}
 
-                <p className="text-slate-600 leading-relaxed text-[15px] break-keep line-clamp-3">
-                  {notice.content}
-                </p>
-              </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:text-[#1e3a8a] transition-colors leading-snug break-keep">
+                      {notice.title}
+                    </h3>
+                    
+                    {notice.images && (
+                      <div className={`grid gap-2 mb-4 ${notice.images.length === 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
+                        {notice.images.map((img, idx) => (
+                          <div key={idx} className="aspect-square rounded-lg overflow-hidden border border-slate-100">
+                            <img src={img} alt="뉴스 이미지" loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                          </div>
+                        ))}
+                      </div>
+                    )}
 
-              <div className="flex items-center justify-between text-slate-400 text-sm border-t border-slate-100/80 pt-4 mt-6">
-                <div className="flex items-center gap-1.5">
-                  <Calendar className="w-4 h-4" />
-                  <span>{notice.date}</span>
-                </div>
-                <a href={notice.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-[#1e3a8a] font-bold group-hover:gap-2 transition-all">
-                  기사 원문보기
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              </div>
+                    <p className="text-slate-600 leading-relaxed text-[15px] break-keep line-clamp-3">
+                      {notice.content}
+                    </p>
+                  </div>
+
+                  <div className="flex items-center justify-between text-slate-400 text-sm border-t border-slate-100/80 pt-4 mt-6">
+                    <div className="flex items-center gap-1.5">
+                      <Calendar className="w-4 h-4" />
+                      <span>{notice.date}</span>
+                    </div>
+                    <a href={notice.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-[#1e3a8a] font-bold group-hover:gap-2 transition-all">
+                      상세보기
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
+                  </div>
+                </motion.div>
+              ))}
             </motion.div>
-          ))}
-        </motion.div>
+          </div>
+
+          {/* Right Column: 언론보도 (News Cards) */}
+          <div className="lg:col-span-5 xl:col-span-4">
+            <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+              <span className="w-1.5 h-6 bg-[#1e3a8a] rounded-full"></span>
+              언론 보도
+            </h2>
+            <motion.div 
+              variants={container}
+              initial="hidden"
+              animate="show"
+              className="grid sm:grid-cols-2 lg:grid-cols-1 gap-6"
+            >
+              {notices.filter(n => n.category === '언론보도').map((notice) => (
+                <motion.div 
+                  key={notice.id} 
+                  variants={item}
+                  className="group bg-white rounded-2xl p-6 transition-all duration-300 hover:border-[#1e3a8a] hover:ring-1 hover:ring-[#1e3a8a]/10 flex flex-col h-full border border-slate-200"
+                >
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      {notice.isPinned && (
+                        <span className="flex items-center gap-1.5 bg-[#1e3a8a] text-white text-xs font-bold px-2.5 py-1 rounded-md">
+                          <Pin className="w-3 h-3" />
+                          주요보도
+                        </span>
+                      )}
+                      <span className={`text-xs font-bold px-2.5 py-1 rounded-md ${notice.isPinned ? 'bg-blue-50 text-[#1e3a8a]' : 'bg-slate-100 text-slate-600'}`}>
+                        {notice.category}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex-1">
+                    <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-[#1e3a8a] transition-colors leading-snug break-keep">
+                      {notice.title}
+                    </h3>
+                    
+                    {notice.images && (
+                      <div className={`grid gap-2 mb-4 ${notice.images.length === 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
+                        {notice.images.map((img, idx) => (
+                          <div key={idx} className="aspect-square rounded-lg overflow-hidden border border-slate-100">
+                            <img src={img} alt="뉴스 이미지" loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    <p className="text-slate-600 leading-relaxed text-sm break-keep line-clamp-3">
+                      {notice.content}
+                    </p>
+                  </div>
+
+                  <div className="flex items-center justify-between text-slate-400 text-sm border-t border-slate-100/80 pt-4 mt-6">
+                    <div className="flex items-center gap-1.5">
+                      <Calendar className="w-4 h-4" />
+                      <span>{notice.date}</span>
+                    </div>
+                    <a href={notice.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-[#1e3a8a] font-bold group-hover:gap-2 transition-all">
+                      기사 원문보기
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+
+        </div>
       </div>
     </div>
   );
