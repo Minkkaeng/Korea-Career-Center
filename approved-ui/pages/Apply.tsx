@@ -82,231 +82,165 @@ export default function Apply() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 pb-24 pt-32 font-sans">
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
-        
-        {/* Header Title */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-black text-slate-900 mb-4">상담 신청</h1>
-          <p className="text-lg text-slate-500 max-w-2xl mx-auto break-keep">
-            진로 설계부터 기업 채용 컨설팅까지, 전문가의 도움이 필요하시다면 언제든 문의해 주세요.
-          </p>
-        </div>
-
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+    <div className="w-full bg-slate-50/50 font-sans min-h-screen pb-24">
+      <div className="max-w-[800px] mx-auto px-4 sm:px-6 pt-4 md:pt-6 relative z-20">
+        <div className="bg-white rounded-lg border border-slate-200 p-8 md:p-12 shadow-sm relative overflow-hidden">
           
-          {/* Left: Contact Info & Guide */}
-          <div className="lg:col-span-5 flex flex-col gap-8">
-            <div className="bg-[#0f2942] text-white rounded-3xl p-8 md:p-10 shadow-lg">
-              <h2 className="text-2xl font-bold mb-6">궁금한 점이 있으신가요?</h2>
-              <p className="text-slate-300 leading-relaxed mb-8 break-keep">
-                아래 폼을 통해 신청을 남겨주시면, 담당자가 확인 후 1~2 영업일 이내에 신속하게 회신해 드립니다.
-              </p>
-              
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center shrink-0">
-                    <Building2 className="w-6 h-6 text-blue-300" />
-                  </div>
-                  <div>
-                    <h3 className="text-slate-400 text-sm mb-1">고객센터</h3>
-                    <p className="font-bold text-xl">070-0000-0000</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center shrink-0">
-                    <User className="w-6 h-6 text-blue-300" />
-                  </div>
-                  <div>
-                    <h3 className="text-slate-400 text-sm mb-1">운영시간</h3>
-                    <p className="font-bold">평일 09:00 - 18:00</p>
-                    <p className="text-sm text-slate-400 mt-1">점심시간 12:00 - 13:00</p>
-                  </div>
-                </div>
+          {submitStatus === 'success' ? (
+            <div className="text-center py-20 animate-in fade-in zoom-in duration-500">
+              <div className="w-20 h-20 bg-emerald-50 rounded flex items-center justify-center mx-auto mb-6">
+                <CheckCircle2 className="w-10 h-10 text-emerald-600" />
               </div>
+              <h2 className="text-2xl font-bold text-slate-900 mb-4">신청이 완료되었습니다!</h2>
+              <p className="text-slate-500 mb-8">담당자가 내용 확인 후 기재해주신 연락처로 회신해 드리겠습니다.</p>
+              <button 
+                onClick={() => setSubmitStatus('idle')}
+                className="px-8 py-3 bg-slate-900 text-white font-bold rounded hover:bg-slate-800 transition-colors"
+              >
+                다른 문의 남기기
+              </button>
             </div>
-            
-            <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
-              <h3 className="font-bold text-lg text-slate-900 mb-4">자주 묻는 질문</h3>
-              <ul className="space-y-3 text-slate-600 text-sm">
-                <li className="flex gap-2">
-                  <span className="text-[#1e3a8a] font-bold">Q.</span>
-                  <span>상담은 온라인으로도 가능한가요?</span>
-                </li>
-                <li className="flex gap-2">
-                  <span className="text-[#1e3a8a] font-bold">Q.</span>
-                  <span>기업 맞춤형 교육도 지원하나요?</span>
-                </li>
-                <li className="flex gap-2">
-                  <span className="text-[#1e3a8a] font-bold">Q.</span>
-                  <span>개인 상담 비용은 어떻게 되나요?</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Right: Form Area */}
-          <div className="lg:col-span-7 bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-slate-200 relative overflow-hidden">
-            {submitStatus === 'success' ? (
-              <div className="text-center py-20 animate-in fade-in zoom-in duration-500">
-                <div className="w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <CheckCircle2 className="w-10 h-10 text-emerald-600" />
-                </div>
-                <h2 className="text-2xl font-bold text-slate-900 mb-4">신청이 완료되었습니다!</h2>
-                <p className="text-slate-500 mb-8">담당자가 내용 확인 후 기재해주신 연락처로 회신해 드리겠습니다.</p>
-                <button 
-                  onClick={() => setSubmitStatus('idle')}
-                  className="px-8 py-3 bg-[#0f2942] text-white font-bold rounded-xl hover:bg-[#1e3a8a] transition-colors"
+          ) : (
+            <form onSubmit={handleSubmit} className="relative z-10 animate-in fade-in duration-500">
+              <div className="absolute -left-[10000px]" aria-hidden="true">
+                <label htmlFor="website">웹사이트</label>
+                <input
+                  id="website"
+                  type="text"
+                  name="website"
+                  value={formData.website}
+                  onChange={handleChange}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
+              {/* Type Selection */}
+              <div className="grid grid-cols-2 gap-4 mb-10 border-b border-slate-200 pb-10">
+                <button
+                  type="button"
+                  onClick={() => setFormType('counseling')}
+                  className={`flex flex-col items-center gap-3 p-6 rounded border-2 transition-all ${
+                    formType === 'counseling' 
+                      ? 'border-[#1e3a8a] bg-slate-50' 
+                      : 'border-transparent bg-white hover:bg-slate-50'
+                  }`}
                 >
-                  다른 문의 남기기
+                  <User className={`w-8 h-8 ${formType === 'counseling' ? 'text-[#1e3a8a]' : 'text-slate-400'}`} />
+                  <span className={`font-bold ${formType === 'counseling' ? 'text-slate-900' : 'text-slate-500'}`}>개인 상담 신청</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setFormType('education')}
+                  className={`flex flex-col items-center gap-3 p-6 rounded border-2 transition-all ${
+                    formType === 'education' 
+                      ? 'border-[#1e3a8a] bg-slate-50' 
+                      : 'border-transparent bg-white hover:bg-slate-50'
+                  }`}
+                >
+                  <Building2 className={`w-8 h-8 ${formType === 'education' ? 'text-[#1e3a8a]' : 'text-slate-400'}`} />
+                  <span className={`font-bold ${formType === 'education' ? 'text-slate-900' : 'text-slate-500'}`}>기업/기관 문의</span>
                 </button>
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="relative z-10 animate-in fade-in duration-500">
-                {/* Honeypot */}
-                <div className="absolute -left-[10000px]" aria-hidden="true">
-                  <label htmlFor="website">웹사이트</label>
-                  <input
-                    id="website"
-                    type="text"
-                    name="website"
-                    value={formData.website}
+
+              <div className="grid md:grid-cols-2 gap-6 mb-6">
+                <div className="space-y-2">
+                  <label className="block text-sm font-bold text-slate-700">
+                    {formType === 'counseling' ? '이름' : '담당자명 / 기관명'} <span className="text-red-500">*</span>
+                  </label>
+                  <input 
+                    type="text" 
+                    name="name"
+                    value={formData.name}
                     onChange={handleChange}
-                    tabIndex={-1}
-                    autoComplete="off"
+                    className={`w-full px-4 py-3 rounded border bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 transition-all ${
+                      errors.name ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-slate-300 focus:border-[#1e3a8a] focus:ring-[#1e3a8a]'
+                    }`} 
+                    placeholder={formType === 'counseling' ? '홍길동' : '홍길동 / (주)한국기업'} 
                   />
+                  {errors.name && <p className="text-red-500 text-sm flex items-center gap-1 mt-1"><AlertCircle className="w-4 h-4"/> {errors.name}</p>}
                 </div>
                 
-                {/* Type Selection */}
-                <div className="grid grid-cols-2 gap-4 mb-8">
-                  <button
-                    type="button"
-                    onClick={() => setFormType('counseling')}
-                    className={`flex flex-col items-center gap-3 p-6 rounded-2xl border-2 transition-all ${
-                      formType === 'counseling' 
-                        ? 'border-[#1e3a8a] bg-blue-50/50' 
-                        : 'border-slate-100 bg-white hover:border-slate-300'
-                    }`}
-                  >
-                    <User className={`w-8 h-8 ${formType === 'counseling' ? 'text-[#1e3a8a]' : 'text-slate-400'}`} />
-                    <span className={`font-bold ${formType === 'counseling' ? 'text-slate-900' : 'text-slate-500'}`}>개인 상담 신청</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setFormType('education')}
-                    className={`flex flex-col items-center gap-3 p-6 rounded-2xl border-2 transition-all ${
-                      formType === 'education' 
-                        ? 'border-[#1e3a8a] bg-blue-50/50' 
-                        : 'border-slate-100 bg-white hover:border-slate-300'
-                    }`}
-                  >
-                    <Building2 className={`w-8 h-8 ${formType === 'education' ? 'text-[#1e3a8a]' : 'text-slate-400'}`} />
-                    <span className={`font-bold ${formType === 'education' ? 'text-slate-900' : 'text-slate-500'}`}>기업/기관 문의</span>
-                  </button>
-                </div>
-
-                <hr className="border-slate-100 mb-8" />
-
-                <div className="grid md:grid-cols-2 gap-6 mb-6">
-                  <div className="space-y-2">
-                    <label className="block text-sm font-bold text-slate-700">
-                      {formType === 'counseling' ? '이름' : '담당자명 / 기관명'} <span className="text-red-500">*</span>
-                    </label>
-                    <input 
-                      type="text" 
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      className={`w-full px-4 py-3.5 rounded-xl border bg-slate-50/50 text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 transition-all ${
-                        errors.name ? 'border-red-300 focus:border-red-500 focus:ring-red-200' : 'border-slate-200 focus:border-[#1e3a8a] focus:ring-[#1e3a8a]/20'
-                      }`} 
-                      placeholder={formType === 'counseling' ? '홍길동' : '홍길동 / (주)한국기업'} 
-                    />
-                    {errors.name && <p className="text-red-500 text-sm flex items-center gap-1 mt-1"><AlertCircle className="w-4 h-4"/> {errors.name}</p>}
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <label className="block text-sm font-bold text-slate-700">연락처 <span className="text-red-500">*</span></label>
-                    <input 
-                      type="tel" 
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className={`w-full px-4 py-3.5 rounded-xl border bg-slate-50/50 text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 transition-all ${
-                        errors.phone ? 'border-red-300 focus:border-red-500 focus:ring-red-200' : 'border-slate-200 focus:border-[#1e3a8a] focus:ring-[#1e3a8a]/20'
-                      }`} 
-                      placeholder="010-0000-0000" 
-                    />
-                    {errors.phone && <p className="text-red-500 text-sm flex items-center gap-1 mt-1"><AlertCircle className="w-4 h-4"/> {errors.phone}</p>}
-                  </div>
-                </div>
-
-                <div className="space-y-2 mb-6">
-                  <label className="block text-sm font-bold text-slate-700">이메일 (선택)</label>
+                <div className="space-y-2">
+                  <label className="block text-sm font-bold text-slate-700">연락처 <span className="text-red-500">*</span></label>
                   <input 
-                    type="email" 
-                    name="email"
-                    value={formData.email}
+                    type="tel" 
+                    name="phone"
+                    value={formData.phone}
                     onChange={handleChange}
-                    className={`w-full px-4 py-3.5 rounded-xl border bg-slate-50/50 text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 transition-all ${
-                      errors.email ? 'border-red-300 focus:border-red-500 focus:ring-red-200' : 'border-slate-200 focus:border-[#1e3a8a] focus:ring-[#1e3a8a]/20'
+                    className={`w-full px-4 py-3 rounded border bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 transition-all ${
+                      errors.phone ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-slate-300 focus:border-[#1e3a8a] focus:ring-[#1e3a8a]'
                     }`} 
-                    placeholder="example@email.com" 
+                    placeholder="010-0000-0000" 
                   />
-                  {errors.email && <p className="text-red-500 text-sm flex items-center gap-1 mt-1"><AlertCircle className="w-4 h-4"/> {errors.email}</p>}
+                  {errors.phone && <p className="text-red-500 text-sm flex items-center gap-1 mt-1"><AlertCircle className="w-4 h-4"/> {errors.phone}</p>}
                 </div>
+              </div>
 
-                <div className="space-y-2 mb-8">
-                  <label className="block text-sm font-bold text-slate-700">문의 내용 <span className="text-red-500">*</span></label>
-                  <textarea 
-                    name="content"
-                    value={formData.content}
-                    onChange={handleChange}
-                    rows={5} 
-                    className={`w-full px-4 py-3.5 rounded-xl border bg-slate-50/50 text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 transition-all resize-none ${
-                      errors.content ? 'border-red-300 focus:border-red-500 focus:ring-red-200' : 'border-slate-200 focus:border-[#1e3a8a] focus:ring-[#1e3a8a]/20'
-                    }`} 
-                    placeholder={formType === 'counseling' ? '희망하시는 상담 분야나 현재 고민하시는 이유를 적어주세요.' : '요청하시는 교육 주제, 예상 인원 및 일정을 남겨주시면 빠른 상담이 가능합니다.'} 
-                  ></textarea>
-                  {errors.content && <p className="text-red-500 text-sm flex items-center gap-1 mt-1"><AlertCircle className="w-4 h-4"/> {errors.content}</p>}
+              <div className="space-y-2 mb-6">
+                <label className="block text-sm font-bold text-slate-700">이메일 (선택)</label>
+                <input 
+                  type="email" 
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className={`w-full px-4 py-3 rounded border bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 transition-all ${
+                    errors.email ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-slate-300 focus:border-[#1e3a8a] focus:ring-[#1e3a8a]'
+                  }`} 
+                  placeholder="example@email.com" 
+                />
+                {errors.email && <p className="text-red-500 text-sm flex items-center gap-1 mt-1"><AlertCircle className="w-4 h-4"/> {errors.email}</p>}
+              </div>
+
+              <div className="space-y-2 mb-8">
+                <label className="block text-sm font-bold text-slate-700">문의 내용 <span className="text-red-500">*</span></label>
+                <textarea 
+                  name="content"
+                  value={formData.content}
+                  onChange={handleChange}
+                  rows={5} 
+                  className={`w-full px-4 py-3 rounded border bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 transition-all resize-none ${
+                    errors.content ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-slate-300 focus:border-[#1e3a8a] focus:ring-[#1e3a8a]'
+                  }`} 
+                  placeholder={formType === 'counseling' ? '희망하시는 상담 분야나 현재 고민을 자유롭게 적어주세요.' : '요청하시는 교육 주제, 예상 인원 및 일정을 남겨주시면 더 빠른 상담이 가능합니다.'} 
+                ></textarea>
+                {errors.content && <p className="text-red-500 text-sm flex items-center gap-1 mt-1"><AlertCircle className="w-4 h-4"/> {errors.content}</p>}
+              </div>
+
+              {/* Privacy Consent */}
+              <div className={`flex items-start gap-3 mb-8 p-5 rounded border ${errors.privacy ? 'border-red-300 bg-red-50' : 'bg-slate-50 border-slate-200'}`}>
+                <input 
+                  type="checkbox" 
+                  id="privacy" 
+                  name="privacy"
+                  checked={formData.privacy}
+                  onChange={handleChange}
+                  className="mt-1 w-4 h-4 rounded border-slate-300 text-[#1e3a8a] focus:ring-[#1e3a8a]" 
+                />
+                <div className="text-sm text-slate-600">
+                  <label htmlFor="privacy" className="font-bold text-slate-900 block mb-1 cursor-pointer">개인정보 수집 및 이용 동의 <span className="text-red-500">*</span></label>
+                  <p>수집항목: 이름, 연락처, 이메일<br/>이용목적: 상담 및 문의에 대한 회신 및 안내<br/>보유기간: 처리 완료 후 6개월 보관 후 파기</p>
                 </div>
+              </div>
 
-                {/* Privacy Consent */}
-                <div className={`flex items-start gap-3 mb-8 p-5 rounded-xl border transition-colors ${errors.privacy ? 'border-red-300 bg-red-50' : 'bg-slate-50 border-slate-200'}`}>
-                  <input 
-                    type="checkbox" 
-                    id="privacy" 
-                    name="privacy"
-                    checked={formData.privacy}
-                    onChange={handleChange}
-                    className="mt-1 w-4 h-4 rounded border-slate-300 text-[#1e3a8a] focus:ring-[#1e3a8a]" 
-                  />
-                  <div className="text-sm text-slate-600">
-                    <label htmlFor="privacy" className="font-bold text-slate-900 block mb-1 cursor-pointer">개인정보 수집 및 이용 동의 <span className="text-red-500">*</span></label>
-                    <p>수집항목: 이름, 연락처, 이메일<br/>이용목적: 상담 및 문의에 대한 회신 및 안내<br/>보유기간: 처리 완료 후 6개월 보관 후 파기</p>
-                  </div>
-                </div>
-
-                <button 
-                  type="submit" 
-                  disabled={isSubmitting}
-                  className="w-full py-4 bg-[#0f2942] hover:bg-[#1e3a8a] text-white font-bold rounded-xl transition-all flex justify-center items-center gap-2 text-lg disabled:opacity-70 shadow-md hover:shadow-lg"
-                >
-                  {isSubmitting ? (
-                    <span className="animate-pulse">처리 중입니다...</span>
-                  ) : (
-                    <>
-                      <Send className="w-5 h-5" />
-                      상담 신청 제출하기
-                    </>
-                  )}
-                </button>
-              </form>
-            )}
-          </div>
+              <button 
+                type="submit" 
+                disabled={isSubmitting}
+                className="w-full py-4 bg-[#1e3a8a] hover:bg-[#1e40af] text-white font-bold rounded transition-all flex justify-center items-center gap-2 text-lg disabled:opacity-70"
+              >
+                {isSubmitting ? (
+                  <span className="animate-pulse">처리 중입니다...</span>
+                ) : (
+                  <>
+                    <Send className="w-5 h-5" />
+                    신청서 제출하기
+                  </>
+                )}
+              </button>
+            </form>
+          )}
         </div>
       </div>
     </div>
   );
 }
+
