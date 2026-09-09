@@ -221,18 +221,8 @@ export default function Apply() {
                     <label htmlFor="privacy" className="font-bold text-slate-900 cursor-pointer">
                       개인정보 수집 및 이용 동의 <span className="text-red-500">*</span>
                     </label>
-                    <button 
-                      type="button" 
-                      onClick={() => {
-                        const el = document.getElementById('privacy-details');
-                        if (el) el.classList.toggle('hidden');
-                      }}
-                      className="text-xs text-blue-600 hover:text-blue-800 font-bold underline underline-offset-2"
-                    >
-                      [자세히보기]
-                    </button>
                   </div>
-                  <div id="privacy-details" className="hidden mt-3 p-4 bg-white border border-slate-200 rounded-md text-xs leading-relaxed">
+                  <div id="privacy-details" className="mt-3 p-4 bg-white border border-slate-200 rounded-md text-xs leading-relaxed">
                     <p className="font-bold text-slate-800 mb-1">보유 및 이용 기간 : 상담 종결일로부터 6개월</p>
                     <p className="mb-3">
                       <span className="font-bold text-slate-800">파기 안내 : </span>
