@@ -216,9 +216,32 @@ export default function Apply() {
                   onChange={handleChange}
                   className="mt-1 w-4 h-4 rounded border-slate-300 text-[#1e3a8a] focus:ring-[#1e3a8a]" 
                 />
-                <div className="text-sm text-slate-600">
-                  <label htmlFor="privacy" className="font-bold text-slate-900 block mb-1 cursor-pointer">개인정보 수집 및 이용 동의 <span className="text-red-500">*</span></label>
-                  <p>수집항목: 이름, 연락처, 이메일<br/>이용목적: 상담 및 문의에 대한 회신 및 안내<br/>보유기간: 처리 완료 후 6개월 보관 후 파기</p>
+                <div className="text-sm text-slate-600 flex-1">
+                  <div className="flex items-center justify-between mb-2">
+                    <label htmlFor="privacy" className="font-bold text-slate-900 cursor-pointer">
+                      개인정보 수집 및 이용 동의 <span className="text-red-500">*</span>
+                    </label>
+                    <button 
+                      type="button" 
+                      onClick={() => {
+                        const el = document.getElementById('privacy-details');
+                        if (el) el.classList.toggle('hidden');
+                      }}
+                      className="text-xs text-blue-600 hover:text-blue-800 font-bold underline underline-offset-2"
+                    >
+                      [자세히보기]
+                    </button>
+                  </div>
+                  <div id="privacy-details" className="hidden mt-3 p-4 bg-white border border-slate-200 rounded-md text-xs leading-relaxed">
+                    <p className="font-bold text-slate-800 mb-1">보유 및 이용 기간 : 상담 종결일로부터 6개월</p>
+                    <p className="mb-3">
+                      <span className="font-bold text-slate-800">파기 안내 : </span>
+                      본 센터는 개인정보보호법을 준수하며, 상담 종결 후 6개월이 경과한 내담자의 인적 사항, 상담 기록, 검사 결과지는 복구 불가능한 방법으로 즉시 파기합니다.
+                    </p>
+                    <p className="text-red-500 font-bold">
+                      (※ 종결 6개월 이후 재방문 시 이전 기록 확인이 불가능 합니다.)
+                    </p>
+                  </div>
                 </div>
               </div>
 
