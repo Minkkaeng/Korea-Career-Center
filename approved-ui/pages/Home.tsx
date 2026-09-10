@@ -67,7 +67,9 @@ export default function Home() {
               <h2 className="text-2xl font-black text-slate-900 mb-4">안내 말씀드립니다</h2>
               <div className="text-slate-600 leading-relaxed mb-8 break-keep">
                 <p className="font-bold text-slate-800 mb-2">현재 홈페이지 수정 중에 있습니다.</p>
-                <p>홈페이지 이용에 다소 불편함이 있더라도 양해 부탁드립니다.</p>
+                <p>
+                  홈페이지 이용에 다소 불편함이 있더라도<br className="block sm:hidden" /> 양해 부탁드립니다.
+                </p>
               </div>
               
               <button
